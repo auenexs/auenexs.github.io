@@ -1,0 +1,103 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Merriweather:wght@400;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Roboto Mono';
+    background-color: #252323;
+    color: #F5F1ED;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+header {
+    background-color: #252323;
+    padding: 1rem 2rem;
+    border-bottom: 2px solid #A99985;
+}
+h1 {
+    font-family: 'Merriweather', serif;
+    color: #70798C;
+    margin-bottom: 0.5rem;
+}
+.primary-nav {
+    margin-bottom: 0.5rem;
+}
+.primary-nav a {
+    color: #DAD2BC;
+    text-decoration: none;
+    margin-right: 1.5rem;
+    font-size: 1.1rem;
+    transition: color 0.2s;
+}
+.primary-nav a:hover {
+    color: #F5F1ED;
+}
+.primary-nav a:active{
+    color: #70798C;
+}
+
+.secondary-nav {
+    font-size: 0.85rem;
+}
+.secondary-nav a {
+    color: #A99985;
+    text-decoration: none;
+    margin-right: 1rem;
+    transition: color 0.2s;
+}
+.secondary-nav a:hover {
+    color: #DAD2BC;
+}
+.secondary-nav a:active{
+    color: #70798C;
+}
+main {
+    flex: 1;
+    padding: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+h2 {
+    font-family: 'Merriweather', serif;
+    color: #70798C;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #A99985;
+}
+main p {
+    margin-bottom: 1rem;
+}
+main a {
+    color: #70798C;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+main a:hover {
+    color: #DAD2BC;
+    text-decoration: underline;
+}
+main a:active {
+    color: #70798C
+}
+footer {
+    background-color: #252323;
+    padding: 1rem;
+    border-top: 2px solid #A99985;
+    text-align: center;
+}
+footer a {
+    color: #A99985;
+    text-decoration: none;
+    margin: 0 0.5rem;
+    transition: color 0.2s;
+}
+footer a:hover {
+    color: #F5F1ED;
+}
+footer a:active{
+    color: #70798C
+}
