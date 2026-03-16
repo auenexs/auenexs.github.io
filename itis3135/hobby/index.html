@@ -1,0 +1,705 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oil Painting | Tyler Bland</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Crimson Pro", Georgia, serif;
+        background-color: #f4ecd8;
+        color: #2c1810;
+        line-height: 1.7;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* ── HEADER ────────────────────────────── */
+      header {
+        background-color: #2c1810;
+        padding: 1.5rem 2rem;
+        border-bottom: 3px solid #c47c3e;
+      }
+
+      h1 {
+        font-family: "Playfair Display", Georgia, serif;
+        color: #f4ecd8;
+        font-size: 2rem;
+        font-style: italic;
+        margin-bottom: 0.75rem;
+        letter-spacing: 0.02em;
+      }
+
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.1rem 0;
+      }
+
+      nav .divider {
+        color: #c47c3e;
+        margin: 0 0.6rem;
+        user-select: none;
+        font-size: 0.7rem;
+      }
+
+      nav a {
+        color: #dac9a8;
+        text-decoration: none;
+        font-family: "Crimson Pro", Georgia, serif;
+        font-size: 1.05rem;
+        transition: color 0.2s;
+      }
+
+      nav a:hover {
+        color: #f4ecd8;
+      }
+
+      nav a.active {
+        color: #c47c3e;
+        font-weight: 600;
+      }
+
+      /* ── MAIN ──────────────────────────────── */
+      main {
+        flex: 1;
+        padding: 2rem;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      section {
+        display: none;
+      }
+
+      section.active {
+        display: block;
+      }
+
+      h2 {
+        font-family: "Playfair Display", Georgia, serif;
+        color: #8b4513;
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.4rem;
+        border-bottom: 2px solid #c47c3e;
+      }
+
+      h3 {
+        font-family: "Playfair Display", Georgia, serif;
+        color: #6b3410;
+        font-size: 1.2rem;
+        margin: 1.4rem 0 0.5rem;
+      }
+
+      main p {
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+        color: #2c1810;
+      }
+
+      main a {
+        color: #8b4513;
+        text-decoration: none;
+        border-bottom: 1px solid #c47c3e;
+        transition:
+          color 0.2s,
+          border-color 0.2s;
+      }
+
+      main a:hover {
+        color: #c47c3e;
+        border-color: #8b4513;
+      }
+
+      /* ── FIGURES ───────────────────────────── */
+      figure {
+        margin: 1.5rem 0;
+        text-align: center;
+      }
+
+      figure img {
+        width: 600px;
+        max-width: 100%;
+        height: auto;
+        outline: 3px solid #c47c3e;
+        border-radius: 2px;
+        display: block;
+        margin: 0 auto;
+      }
+
+      figcaption {
+        font-size: 0.95rem;
+        color: #7a5c3e;
+        margin-top: 0.5rem;
+        font-style: italic;
+      }
+
+      /* ── TABLES ────────────────────────────── */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        font-size: 1rem;
+      }
+
+      th {
+        background-color: #8b4513;
+        color: #f4ecd8;
+        padding: 0.6rem 0.9rem;
+        text-align: left;
+        font-family: "Playfair Display", Georgia, serif;
+        font-weight: 600;
+      }
+
+      td {
+        padding: 0.55rem 0.9rem;
+        border-bottom: 1px solid #d4b896;
+        color: #2c1810;
+      }
+
+      tr:nth-child(even) td {
+        background-color: #ede0c4;
+      }
+
+      /* ── LISTS ─────────────────────────────── */
+      ul,
+      ol {
+        padding-left: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      li {
+        margin-bottom: 0.4rem;
+        font-size: 1.05rem;
+      }
+
+      /* ── BLOCKQUOTE ────────────────────────── */
+      blockquote {
+        border-left: 4px solid #8b4513;
+        padding: 0.75rem 1.25rem;
+        margin: 1.5rem 0;
+        background-color: #ede0c4;
+        color: #5a3520;
+        font-style: italic;
+        font-size: 1.1rem;
+        border-radius: 0 4px 4px 0;
+      }
+
+      blockquote cite {
+        display: block;
+        margin-top: 0.4rem;
+        font-size: 0.95rem;
+        color: #7a5c3e;
+        font-style: normal;
+      }
+
+      /* ── FOOTER ────────────────────────────── */
+      footer {
+        background-color: #2c1810;
+        color: #dac9a8;
+        padding: 1rem 2rem;
+        border-top: 3px solid #c47c3e;
+        text-align: center;
+      }
+
+      footer nav {
+        justify-content: center;
+        margin-bottom: 0.75rem;
+      }
+
+      footer nav a {
+        font-size: 0.9rem;
+      }
+
+      .validation-buttons {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .validation-buttons a {
+        background-color: #8b4513;
+        color: #f4ecd8;
+        text-decoration: none;
+        padding: 0.3rem 0.8rem;
+        border-radius: 3px;
+        font-size: 0.85rem;
+        font-family: "Crimson Pro", Georgia, serif;
+        transition: background-color 0.2s;
+        border: none;
+      }
+
+      .validation-buttons a:hover {
+        background-color: #c47c3e;
+      }
+    </style>
+    <script
+      src="https://lint.page/kit/4d0fe3.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <h1>Oil Painting</h1>
+      <nav>
+        <a
+          href="#"
+          id="nav-what"
+          class="active"
+          onclick="
+            showSection('what');
+            return false;
+          "
+          >What</a
+        >
+        <span class="divider">◆</span>
+        <a
+          href="#"
+          id="nav-who"
+          onclick="
+            showSection('who');
+            return false;
+          "
+          >Who</a
+        >
+        <span class="divider">◆</span>
+        <a
+          href="#"
+          id="nav-when"
+          onclick="
+            showSection('when');
+            return false;
+          "
+          >When</a
+        >
+        <span class="divider">◆</span>
+        <a
+          href="#"
+          id="nav-where"
+          onclick="
+            showSection('where');
+            return false;
+          "
+          >Where</a
+        >
+        <span class="divider">◆</span>
+        <a
+          href="#"
+          id="nav-how"
+          onclick="
+            showSection('how');
+            return false;
+          "
+          >How</a
+        >
+        <span class="divider">◆</span>
+        <a
+          href="#"
+          id="nav-why"
+          onclick="
+            showSection('why');
+            return false;
+          "
+          >Why</a
+        >
+      </nav>
+    </header>
+
+    <main>
+      <!-- WHAT (default) ─────────────────────── -->
+      <section id="what" class="active">
+        <h2>What is Oil Painting?</h2>
+        <figure>
+          <img
+            src="images/palette.jpg"
+            alt="An oil painting palette covered in vibrant mixed colors"
+          />
+          <figcaption>
+            What a painter's pallet often looks like in the middle of their work
+          </figcaption>
+        </figure>
+        <p>
+          Oil painting is one of those art forms that's hard not to fall in love
+          with once you really get into it. At its core, it's a technique where
+          pigments are mixed with a drying oil, often linseed oil, to create
+          paint that you then apply to a surface, usually canvas, wood, or
+          linen.
+        </p>
+        <p>
+          Unlike acrylics or watercolors, oil painting can take days to dry
+          (unless you mix your paint in a fast-drying solvent). This means you
+          can blend colors directly on the canvas, go back, and make changes if
+          you wanted to. It is also one of the oldest mediums to exist, dating
+          back to <strong>650 AD</strong>.
+        </p>
+        <h3>Properties of Oil Paint</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Detail</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Drying time</td>
+              <td>Days to weeks (touch-dry); months to fully cure</td>
+            </tr>
+            <tr>
+              <td>Binder</td>
+              <td>Linseed, walnut, or poppy oil</td>
+            </tr>
+            <tr>
+              <td>Surfaces</td>
+              <td>Canvas, wood panel, or paper (must be primed)</td>
+            </tr>
+            <tr>
+              <td>Finish</td>
+              <td>Matte to high gloss depending on medium used</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- WHO ────────────────────────────────── -->
+      <section id="who">
+        <h2>Who's Painting?</h2>
+        <figure>
+          <img
+            src="images/artist.jpg"
+            alt="An artist painting at a wooden easel in a bright studio"
+          />
+          <figcaption>
+            Art doesn't have to be stresesful if you don't want it to be
+          </figcaption>
+        </figure>
+        <p>
+          Oil painting belongs to everyone. Hobbyists, students, or
+          professionals, anyone could find enjoyment in the craft. Art is pretty
+          cool in that there really isn't any barrier to entry. Everyone makes
+          bad art, at least at first, so theoretically anyone could approach it.
+          Here's a little about who I am and why it stuck with me.
+        </p>
+        <p>
+          I picked up oil painting 10 years ago when I was 16. I always thought
+          I was going to be an artist. I look back on my journey with art
+          fondly, if not with a bit of sadness. I never really believed in
+          myself as much as a successful artist should. Because of that, I
+          didn't pursue it as strongly as I probably would have. When I entered
+          college, I originally picked art as my major, but I managed to
+          convince myself (with the help of others) that art will never make me
+          a living. So, I switched majors. Very recently I started approaching
+          it again and I remember why I loved it so much. I mostly paint
+          landscapes.
+        </p>
+        <h3>My favorite Painters</h3>
+        <ul>
+          <li>
+            <strong>Robert Hills</strong> — A founding member of the Society of
+            Painters in Water Colours
+          </li>
+          <li>
+            <strong>Eugène Carrière</strong> — A French Symbolist painter known
+            for his monochromatic, smokey style, often in muted browns and
+            grays. He was also a close friend to Auguste Rodin
+          </li>
+          <li>
+            <strong>George Butler</strong> — A British watercolor painter known
+            for his depictions of the English countryside and capturing everday
+            working people
+          </li>
+          <li>
+            <strong>Albert Bierstadt</strong> — A German-American landscape
+            painter that mostly depicts the American West, particularly the
+            Rocky Mountains and Yosemite Valley
+          </li>
+        </ul>
+        <blockquote>
+          "I dream of painting and then I paint my dream."
+          <cite>— Vincent van Gogh</cite>
+        </blockquote>
+      </section>
+
+      <!-- WHEN ───────────────────────────────── -->
+      <section id="when">
+        <h2>When's a good time to paint?</h2>
+        <figure>
+          <img
+            src="images/morning-light.jpg"
+            alt="A sunlit studio in the early morning with a canvas on an easel"
+          />
+          <figcaption>
+            While lighting is important, it's more important to stay consistent
+          </figcaption>
+        </figure>
+        <p>
+          The best time to paint is whenever you can actually make the time.
+          That'll look different for everyone. That said, a lot of painters find
+          that the morning light is softer and more consistent. Some people
+          swear by evening painting sessions. Usually they'll use their own
+          lighting to illuminate their work
+        </p>
+        <h3>Ideal Conditions by Time of Day</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Time of Day</th>
+              <th>Light Quality</th>
+              <th>Best For</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Early morning (7–10 AM)</td>
+              <td>Soft, warm, diffused</td>
+              <td>Landscapes and still life with delicate tones</td>
+            </tr>
+            <tr>
+              <td>Midday (11 AM–2 PM)</td>
+              <td>Bright, harsh, high contrast</td>
+              <td>Bold color studies; plein air on overcast days</td>
+            </tr>
+            <tr>
+              <td>Afternoon (3–6 PM)</td>
+              <td>Warm golden light</td>
+              <td>Portraits and warm-toned landscapes</td>
+            </tr>
+            <tr>
+              <td>Evening (studio)</td>
+              <td>Artificial, consistent</td>
+              <td>Detail work and final finishing layers</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- WHERE ──────────────────────────────── -->
+      <section id="where">
+        <h2>Where are we painting?</h2>
+        <figure>
+          <img
+            src="images/studio.jpg"
+            alt="A bright artist's studio with canvases stacked along the wall and brushes in jars"
+          />
+          <figcaption>
+            Whether it's in a studio or in public, a place where you can focus
+            is often best
+          </figcaption>
+        </figure>
+        <p>
+          Oil painting can happen almost anywhere. The subject of the work is
+          what often dictates where it takes place, but there are several other
+          factors that matter when determining an ideal spot for painting
+        </p>
+        <h3>Indoor Studio</h3>
+        <p>
+          A home studio gives full control over lighting, temperature, and
+          layout. North-facing windows are traditionally preferred for their
+          consistent, cool, indirect light that won't shift throughout the day.
+          A dedicated space also eliminates setup and teardown time, making
+          daily painting a much lower-friction habit.
+        </p>
+        <h3>Plein Air (Outdoors)</h3>
+        <p>
+          Plein air painting, or working directly from nature, has a deep
+          tradition in oil painting, championed by the 19th-century
+          Impressionists. Working outdoors demands speed and decisiveness, which
+          sharpens observation skills and loosens brushwork in ways studio
+          practice alone cannot.
+        </p>
+        <h3>Some of my favorite spots</h3>
+        <ul>
+          <li>
+            <strong>Lake Norman State Park</strong> — Reflective water, dense
+            tree lines, open skies
+          </li>
+          <li>
+            <strong>Crowders Mountain</strong> — Dramatic rock faces and wide
+            panoramic views
+          </li>
+          <li>
+            <strong>Freedom Park</strong> — Urban green space with varied
+            seasonal subjects
+          </li>
+          <li>
+            <strong>The Mint Museum</strong> — Inspiration from collections;
+            active local art community
+          </li>
+          <li>
+            <strong>NoDa Arts District</strong> — Street murals and textured
+            walls make for interesting subject material
+          </li>
+        </ul>
+      </section>
+
+      <!-- HOW ────────────────────────────────── -->
+      <section id="how">
+        <h2>How does one paint?</h2>
+        <figure>
+          <img
+            src="images/materials.jpg"
+            alt="Oil painting supplies laid out: brushes, tubes of paint, palette knife, and a primed canvas"
+          />
+          <figcaption>
+            It makes things easier when you have all the tools for a job
+          </figcaption>
+        </figure>
+        <p>
+          Getting started with oil painting requires a small but specific set of
+          materials and a basic understanding of a few foundational techniques.
+          The learning curve is real, but even early attempts produce satisfying
+          results, and the process itself is the reward.
+        </p>
+        <h3>Essential Materials</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Item</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Surface</td>
+              <td>Stretched canvas or wood panel</td>
+              <td>Must be primed with gesso first</td>
+            </tr>
+            <tr>
+              <td>Paint</td>
+              <td>Artist-grade oil paints</td>
+              <td>Start with 6–8 colors; student grade works fine initially</td>
+            </tr>
+            <tr>
+              <td>Brushes</td>
+              <td>Hog bristle and soft synthetic</td>
+              <td>Flats, rounds, and filberts in varied sizes</td>
+            </tr>
+            <tr>
+              <td>Medium</td>
+              <td>Linseed oil or odorless mineral spirits</td>
+              <td>Thins paint and adjusts working time</td>
+            </tr>
+            <tr>
+              <td>Palette</td>
+              <td>Glass, wood, or disposable pad</td>
+              <td>Glass is the easiest to clean thoroughly</td>
+            </tr>
+            <tr>
+              <td>Solvent</td>
+              <td>Odorless mineral spirits (OMS)</td>
+              <td>For brush cleaning; always use in a ventilated space</td>
+            </tr>
+          </tbody>
+        </table>
+        <h3>The Basic Painting Process</h3>
+        <ol>
+          <li>
+            <strong>Tone the canvas</strong> — Apply a thin wash of color to
+            eliminate the stark white ground
+          </li>
+          <li>
+            <strong>Sketch the composition</strong> — Loose charcoal or a thin
+            diluted paint sketch
+          </li>
+          <li>
+            <strong>Block in shadows</strong> — Establish the darkest values
+            first
+          </li>
+          <li>
+            <strong>Build up midtones</strong> — Work from dark to light, layer
+            by layer
+          </li>
+          <li>
+            <strong>Add highlights and detail</strong> — Thicker paint applied
+            last (fat over lean rule)
+          </li>
+          <li>
+            <strong>Varnish when cured</strong> — Apply a protective varnish
+            after 6–12 months of drying
+          </li>
+        </ol>
+      </section>
+
+      <!-- WHY ────────────────────────────────── -->
+      <section id="why">
+        <h2>Why bother making art?</h2>
+        <figure>
+          <img
+            src="images/finished-painting.jpg"
+            alt="A finished oil painting of a landscape with warm evening light"
+          />
+          <figcaption>
+            Art is one of those things that makes life a little better
+          </figcaption>
+        </figure>
+        <p>
+          There are many practical reasons to pick up oil painting, and just as
+          many deeply personal ones. However, I think it's important to
+          recognize the question, why should art even exist? The question sounds
+          provacative but is really just confused. It assumes art is a luxary
+          bolted into our lives, something we could remove and still have the
+          same life, only leaner. But art is not an addition to human
+          experience. It is one of its oldest and most persistent expressions.
+          To ask why it should exist is a little like asking why language should
+          exist. Critics of art often frame their skepticism in economic terms:
+          it doesn't feed anyone, it doesn't cure disease. But this
+          misunderstands what people are fed by. Meaning isn't a luxury. A life
+          stripped of beauty and narrative is an impoverished life.
+        </p>
+
+        <p>
+          That said, anyone who enjoys art and finds the process of making it
+          enjoyable should do so without reservations or fear of what others
+          think.
+        </p>
+        <blockquote>
+          "Every artist dips his brush in his own soul, and paints his own
+          nature into his pictures."
+          <cite>— Henry Ward Beecher</cite>
+        </blockquote>
+      </section>
+    </main>
+
+    <footer>
+      <nav>
+        <a href="/itis3135/">ITIS3135</a>
+        <span class="divider">◆</span>
+        <a href="itis3135/tblanddesigns.com/index.html">Ty Bland Design Co.</a>
+      </nav>
+    </footer>
+
+    <script>
+      function showSection(id) {
+        var sections = document.querySelectorAll("main section");
+        sections.forEach(function (s) {
+          s.classList.remove("active");
+        });
+
+        var navLinks = document.querySelectorAll("header nav a");
+        navLinks.forEach(function (a) {
+          a.classList.remove("active");
+        });
+
+        document.getElementById(id).classList.add("active");
+
+        var activeLink = document.getElementById("nav-" + id);
+        if (activeLink) {
+          activeLink.classList.add("active");
+        }
+      }
+    </script>
+  </body>
+</html>
