@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Oil Painting | Tyler Bland</title>
+    <link rel="icon" type="image/png" href="favicon-32x32.png" />
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap");
 
@@ -73,13 +74,14 @@
       /* ── MAIN ──────────────────────────────── */
       main {
         flex: 1;
-        padding: 2rem;
         max-width: 900px;
         margin: 0 auto;
+        width: 100%;
       }
 
       section {
         display: none;
+        padding: 2rem;
       }
 
       section.active {
@@ -215,34 +217,10 @@
 
       footer nav {
         justify-content: center;
-        margin-bottom: 0.75rem;
       }
 
       footer nav a {
         font-size: 0.9rem;
-      }
-
-      .validation-buttons {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-      }
-
-      .validation-buttons a {
-        background-color: #8b4513;
-        color: #f4ecd8;
-        text-decoration: none;
-        padding: 0.3rem 0.8rem;
-        border-radius: 3px;
-        font-size: 0.85rem;
-        font-family: "Crimson Pro", Georgia, serif;
-        transition: background-color 0.2s;
-        border: none;
-      }
-
-      .validation-buttons a:hover {
-        background-color: #c47c3e;
       }
     </style>
     <script
@@ -313,6 +291,16 @@
             return false;
           "
           >Why</a
+        >
+        <span class="divider">◆</span>
+        <a
+          href="#"
+          id="nav-ai"
+          onclick="
+            showSection('ai');
+            return false;
+          "
+          >AI Prompts</a
         >
       </nav>
     </header>
@@ -670,6 +658,31 @@
           nature into his pictures."
           <cite>— Henry Ward Beecher</cite>
         </blockquote>
+      </section>
+      <!-- AI Prompts ────────────────────────────────── -->
+      <section id="ai">
+        <h2>AI Prompts</h2>
+        <p>AI Model: <strong>Claude Sonnet 4.6</strong> (<code>claude-sonnet-4-6</code>) by Anthropic</p>
+        <ol>
+          <li><em>"Today we will be making a website for an assignment based on a hobby/interest of mine..."</em> — Created the <code>itis3135/hobby/</code> folder and <code>images/</code> subfolder, then built <code>index.html</code> as a single self-contained file with an embedded stylesheet, header, main, and footer — no includes.</li>
+          <li><em>(Same prompt)</em> — Built six section-based pages (What, Who, When, Where, How, Why) with JavaScript to show one section at a time, using <code>◆</code> as the nav divider.</li>
+          <li><em>"I would like all of the images to be the same size"</em> — Standardized all image display sizes to 600px via CSS, removing individual inline <code>width</code> attributes from each <code>img</code> tag.</li>
+          <li><em>"Can you please place this piece of code where it's appropriate? &lt;script src='scripts/HTMLInclude.min.js'&gt;&lt;/script&gt;"</em> — Added the script with the corrected relative path <code>../scripts/HTMLInclude.min.js</code> for the <code>hobby/</code> subdirectory.</li>
+          <li><em>"I'm trying to get this file to work: HTMLInclude.min.js"</em> — Explained that the script requires a local web server (Live Server, Python, or Node) to function, as <code>file://</code> protocol blocks XMLHttpRequest.</li>
+          <li><em>(Lint.page image size errors)</em> — Resized all six images from their original large dimensions (up to 5616×3744) down to 1200px wide using PowerShell's <code>System.Drawing</code> library.</li>
+          <li><em>"Warning: Heading (h1) should not be qualified"</em> — Fixed the CSS by changing the qualified selector <code>header h1</code> to just <code>h1</code>.</li>
+          <li><em>"Warning: Using width with padding can sometimes make elements larger than you expect"</em> — Swapped <code>border</code> for <code>outline</code> on <code>figure img</code> and removed <code>width: 100%</code> from <code>main</code>.</li>
+          <li><em>"Bad value 'itis3135\tblanddesigns.com\index.html' for attribute href"</em> — Replaced backslashes with forward slashes in the footer link.</li>
+          <li><em>"Can we verify that everything we have fits within the assignment requirements?"</em> — Reviewed all criteria; found the validation buttons were missing from the footer.</li>
+          <li><em>"I'm not sure what these validation buttons are"</em> / <em>"I have a validator in my code though. And we always use that one"</em> — Confirmed the lint.page script already in the <code>&lt;head&gt;</code> satisfies the requirement.</li>
+          <li><em>"Is there any redundant code?"</em> — Removed the unused <code>.validation-buttons</code> CSS rules and the pointless <code>margin-bottom</code> on <code>footer nav</code>.</li>
+          <li><em>"I would like to add a favicon"</em> / <em>"C:\Users\tybla\Downloads\favicon-32x32.png"</em> — Copied the file into the hobby folder and added a <code>&lt;link rel="icon"&gt;</code> tag to the <code>&lt;head&gt;</code>.</li>
+          <li><em>"Can you make an empty section called AI Prompts"</em> — Added the nav link and this section.</li>
+          <li><em>"The line going underneath the H2 does not extend across the screen"</em> — Tried several fixes; root cause was <code>margin: 0 auto</code> in a flex context causing <code>main</code> to shrink to content width.</li>
+          <li><em>"It would seem to be a margin error"</em> — Resolved by moving <code>padding: 2rem</code> from <code>main</code> onto <code>section</code>, fixing both the layout bug and the remaining linter warning.</li>
+          <li><em>"Can you place in the paragraph section, a record of everything you and I did?"</em> — Added this list.</li>
+          <li><em>"Can you include the prompts I used?"</em> — Updated each entry to include the prompt that triggered it.</li>
+        </ol>
       </section>
     </main>
 
