@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ty Bland's Tranquil Badger ~ ITIS3135 | Intro Form</title>
+    <link rel="stylesheet" href="styles/default.css" />
+  </head>
+  <body>
+    <div data-include="components/header.html"></div>
+    <main>
+      <h2>Introduction Form</h2>
+      <h3>Please fill out the form below to generate your introduction page.</h3>
+      <form id="intro-form">
+
+        <fieldset>
+          <legend>Personal Information</legend>
+          <label for="first-name">First Name: <span>*</span></label>
+          <input type="text" id="first-name" name="first-name" required value="Tyler" />
+
+          <label for="middle-name">Middle Name or Initial: <span>(optional)</span></label>
+          <input type="text" id="middle-name" name="middle-name" />
+
+          <label for="nickname">Nickname / Preferred Name: <span>(optional)</span></label>
+          <input type="text" id="nickname" name="nickname" />
+
+          <label for="last-name">Last Name: <span>*</span></label>
+          <input type="text" id="last-name" name="last-name" required value="Bland" />
+        </fieldset>
+
+
+        <fieldset>
+          <legend>Page Identity</legend>
+          <label for="mascot-adj">Mascot Adjective: <span>*</span></label>
+          <input type="text" id="mascot-adj" name="mascot-adj" required placeholder="e.g. Tranquil" value="Tranquil" />
+
+          <label for="mascot-animal">Mascot Animal: <span>*</span></label>
+          <input type="text" id="mascot-animal" name="mascot-animal" required placeholder="e.g. Badger" value="Badger" />
+
+          <label for="divider">Divider Character: <span>*</span></label>
+          <input type="text" id="divider" name="divider" required placeholder="e.g. ~, |, ♥️" value="|" />
+        </fieldset>
+
+        <fieldset>
+          <legend>Profile Picture</legend>
+          <label for="picture">Upload Picture: <span>(optional — defaults to site image if left blank)</span></label>
+          <input type="file" id="picture" name="picture" accept="image/*" />
+
+          <label for="picture-caption">Picture Caption: <span>*</span></label>
+          <input type="text" id="picture-caption" name="picture-caption" required value="Took a spray painting class in Miami" />
+        </fieldset>
+
+        <fieldset>
+          <legend>Personal Statement</legend>
+          <label for="personal-statement">Personal Statement: <span>*</span></label>
+          <textarea id="personal-statement" name="personal-statement" required>I am a senior in my first semester, majoring in Computer Science with a concentration in IT. I'm super excited to take this class, as this will be my second time working with HTML.</textarea>
+        </fieldset>
+
+        <fieldset>
+          <legend>Background</legend>
+          <label for="personal-bg">Personal Background: <span>*</span></label>
+          <textarea id="personal-bg" name="personal-bg" required>I'm 26 years old and I"m interested in Cybersecurity</textarea>
+
+          <label for="professional-bg">Professional Background: <span>*</span></label>
+          <textarea id="professional-bg" name="professional-bg" required>My experience consists of numerous small projects. I was also a data annotator for some time</textarea>
+
+          <label for="academic-bg">Academic Background: <span>*</span></label>
+          <textarea id="academic-bg" name="academic-bg" required>I've been in college since 2019, I transferred here from University of Houston in 2024</textarea>
+
+          <label for="subject-bg">Background in Subject: <span>*</span></label>
+          <textarea id="subject-bg" name="subject-bg" required>I took a web application development class at UH, but it didn't transfer. Excited to have a refresher</textarea>
+
+          <label for="primary-computer">Primary Work Computer &amp; Location: <span>*</span></label>
+          <input type="text" id="primary-computer" name="primary-computer" required value="Custom desktop; Windows" />
+
+          <label for="backup-computer">Backup Work Computer &amp; Location Plan: <span>*</span></label>
+          <input type="text" id="backup-computer" name="backup-computer" required value='2024 Macbook Pro 14"; If needed, library' />
+        </fieldset>
+
+        <fieldset>
+          <legend>Current Courses</legend>
+
+          <fieldset class="course-entry">
+            <legend>Course 1</legend>
+            <label for="course1-dept">Department:</label>
+            <input type="text" id="course1-dept" name="course1-dept" placeholder="e.g. ITIS" value="ITIS" />
+            <label for="course1-num">Course Number:</label>
+            <input type="text" id="course1-num" name="course1-num" placeholder="e.g. 3135" value="3135" />
+            <label for="course1-name">Course Name:</label>
+            <input type="text" id="course1-name" name="course1-name" placeholder="e.g. Front End Web Development" value="Front End Web Development" />
+            <label for="course1-reason">Reason:</label>
+            <textarea id="course1-reason" name="course1-reason">I loved the class I took at UH so I'm equally excited</textarea>
+          </fieldset>
+
+          <fieldset class="course-entry">
+            <legend>Course 2</legend>
+            <label for="course2-dept">Department:</label>
+            <input type="text" id="course2-dept" name="course2-dept" placeholder="e.g. ITIS" value="ITIS" />
+            <label for="course2-num">Course Number:</label>
+            <input type="text" id="course2-num" name="course2-num" placeholder="e.g. 3130" value="3130" />
+            <label for="course2-name">Course Name:</label>
+            <input type="text" id="course2-name" name="course2-name" value="Human-Centered Compputing" />
+            <label for="course2-reason">Reason:</label>
+            <textarea id="course2-reason" name="course2-reason">Taking this class as a requirement</textarea>
+          </fieldset>
+
+          <fieldset class="course-entry">
+            <legend>Course 3</legend>
+            <label for="course3-dept">Department:</label>
+            <input type="text" id="course3-dept" name="course3-dept" placeholder="e.g. ITIS" value="ITIS" />
+            <label for="course3-num">Course Number:</label>
+            <input type="text" id="course3-num" name="course3-num" placeholder="e.g. 3200" value="3200" />
+            <label for="course3-name">Course Name:</label>
+            <input type="text" id="course3-name" name="course3-name" value="Introduction to Information Security &amp; Privacy" />
+            <label for="course3-reason">Reason:</label>
+            <textarea id="course3-reason" name="course3-reason">I've been interested in Cybersecurity for a long time, so this class I was most excited about taking</textarea>
+          </fieldset>
+
+          <fieldset class="course-entry">
+            <legend>Course 4</legend>
+            <label for="course4-dept">Department:</label>
+            <input type="text" id="course4-dept" name="course4-dept" placeholder="e.g. STAT" value="STAT" />
+            <label for="course4-num">Course Number:</label>
+            <input type="text" id="course4-num" name="course4-num" placeholder="e.g. 2223" value="2223" />
+            <label for="course4-name">Course Name:</label>
+            <input type="text" id="course4-name" name="course4-name" value="Elements of Statistics ll" />
+            <label for="course4-reason">Reason:</label>
+            <textarea id="course4-reason" name="course4-reason">This class is also a requirement</textarea>
+          </fieldset>
+
+          <button type="button" id="add-course">Add Course</button>
+
+        </fieldset>
+
+        <fieldset>
+          <legend>Quote</legend>
+          <label for="quote">Quote: <span>*</span></label>
+          <textarea id="quote" name="quote" required>Stay hungry, stay foolish</textarea>
+
+          <label for="quote-author">Quote Author: <span>*</span></label>
+          <input type="text" id="quote-author" name="quote-author" required value="Steve Jobs" />
+        </fieldset>
+
+        <fieldset>
+          <legend>Optional Extras</legend>
+          <label for="funny-thing">Funny Thing About You: <span>(optional)</span></label>
+          <textarea id="funny-thing" name="funny-thing">I'm from Houston, TX</textarea>
+
+          <label for="share">Something I'd Like to Share: <span>(optional)</span></label>
+          <textarea id="share" name="share">My Experience varies but I feell super comfortable about my foundationals</textarea>
+        </fieldset>
+
+        <fieldset>
+          <legend>Links</legend>
+
+          <label for="link1-label">Link 1 Label:</label>
+          <input type="text" id="link1-label" name="link1-label" placeholder="e.g. LinkedIn" value="LinkedIn" />
+          <label for="link1-url">Link 1 URL:</label>
+          <input type="url" id="link1-url" name="link1-url" placeholder="https://" value="https://www.linkedin.com/in/tybland" />
+
+          <label for="link2-label">Link 2 Label:</label>
+          <input type="text" id="link2-label" name="link2-label" placeholder="e.g. GitHub" value="GitHub" />
+          <label for="link2-url">Link 2 URL:</label>
+          <input type="url" id="link2-url" name="link2-url" placeholder="https://" value="https://github.com/auenexs" />
+
+          <label for="link3-label">Link 3 Label:</label>
+          <input type="text" id="link3-label" name="link3-label" placeholder="e.g. GitHub.io" value="GitHub.io" />
+          <label for="link3-url">Link 3 URL:</label>
+          <input type="url" id="link3-url" name="link3-url" placeholder="https://" value="https://auenexs.github.io" />
+
+          <label for="link4-label">Link 4 Label:</label>
+          <input type="text" id="link4-label" name="link4-label" placeholder="e.g. freeCodeCamp" value="freeCodeCamp" />
+          <label for="link4-url">Link 4 URL:</label>
+          <input type="url" id="link4-url" name="link4-url" placeholder="https://" value="https://www.freecodecamp.org/auenexs" />
+
+          <label for="link5-label">Link 5 Label:</label>
+          <input type="text" id="link5-label" name="link5-label" placeholder="e.g. CLT Web" value="CLT Web" />
+          <label for="link5-url">Link 5 URL:</label>
+          <input type="url" id="link5-url" name="link5-url" placeholder="https://" value="https://webpages.charlotte.edu/tbland6/" />
+        </fieldset>
+
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+        <button type="button" id="clear-form">Clear</button>
+
+      </form>
+
+    </main>
+    <div data-include="components/footer.html"></div>
+    <script src="scripts/HTMLInclude.min.js"></script>
+    <script src="scripts/introduction.js"></script>
+  </body>
+</html>
