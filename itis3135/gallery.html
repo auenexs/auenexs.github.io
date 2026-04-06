@@ -5,13 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ty Bland's Tranquil Badger ~ ITIS3135 | Gallery</title>
     <link rel="stylesheet" href="styles/default.css" />
+    <script
+      src="https://lint.page/kit/4d0fe3.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <div data-include="components/header.html"></div>
-    <main>
-      <h2>Gallery Coming Soon</h2>
-      <p>This page will contain a gallery project.</p>
-    </main>
+    <h1 id="title">Customer Satisfaction Survey</h1>
+    <p id="description">
+      Thank you for taking the time to help us improve our services
+    </p>
+
+    <form id="survey-form">
+      <label id="name-label" for="name">Name</label>
+      <input id="name" type="text" placeholder="Enter your name" required />
+
+      <label id="email-label" for="email">Email</label>
+      <input id="email" type="email" placeholder="Enter your email" required />
+
+      <label id="number-label" for="number">Age</label>
+      <input
+        id="number"
+        type="number"
+        min="13"
+        max="120"
+        placeholder="Enter your age"
+      />
+
+      <label for="dropdown"
+        >Which option best describes your current role?</label
+      >
+      <select id="dropdown">
+        <option value="">Select an option</option>
+        <option value="student">Student</option>
+        <option value="professional">Professional</option>
+        <option value="other">Other</option>
+      </select>
+
+      <label>Would you recommend our service to a friend?</label>
+      <label>
+        <input type="radio" name="recommend" value="yes" />
+        Yes
+      </label>
+      <label>
+        <input type="radio" name="recommend" value="no" />
+        No
+      </label>
+      <label>
+        <input type="radio" name="recommend" value="maybe" />
+        Maybe
+      </label>
+
+      <label
+        >What features would you like to see improved? (Check all that
+        apply)</label
+      >
+      <label>
+        <input type="checkbox" value="user-interface" />
+        User Interface
+      </label>
+      <label>
+        <input type="checkbox" value="performance" />
+        Performance
+      </label>
+      <label>
+        <input type="checkbox" value="customer-support" />
+        Customer Support
+      </label>
+      <label>
+        <input type="checkbox" value="documentation" />
+        Documentation
+      </label>
+
+      <label for="comments">Any additional comments or suggestions?</label>
+      <textarea
+        id="comments"
+        placeholder="Enter your comments here..."
+      ></textarea>
+
+      <button id="submit" type="submit">Submit</button>
+    </form>
     <div data-include="components/footer.html"></div>
     <script src="scripts/HTMLInclude.min.js"></script>
   </body>
