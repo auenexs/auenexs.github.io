@@ -101,3 +101,79 @@ footer a:hover {
 footer a:active{
     color: #70798C
 }
+
+/* Headings */
+h3 {
+    font-family: 'Merriweather', serif;
+    color: #DAD2BC;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.4rem;
+}
+h4 {
+    font-family: 'Merriweather', serif;
+    color: #A99985;
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+/* Lists */
+main ul, main ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+main li {
+    margin-bottom: 0.4rem;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 1.5rem 0;
+    background-color: #2d2b2b;
+}
+th, td {
+    border: 1px solid #A99985;
+    padding: 0.75rem;
+    text-align: left;
+    vertical-align: top;
+}
+th {
+    background-color: #3a3737;
+    color: #DAD2BC;
+    font-weight: bold;
+}
+td ul {
+    margin-left: 1.25rem;
+    margin-bottom: 0;
+}
+
+/* Figures */
+figure {
+    margin: 1.5rem 0;
+    text-align: center;
+}
+figure img {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid #A99985;
+    border-radius: 4px;
+}
+figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #A99985;
+    font-style: italic;
+}
+
+/* Sections */
+section {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed #3a3737;
+}
+section:last-child {
+    border-bottom: none;
+}

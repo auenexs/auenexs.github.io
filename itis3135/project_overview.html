@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ty Bland's Tranquil Badger ~ ITIS3135 | Project Proposal</title>
+    <link rel="stylesheet" href="styles/default.css" />
+    <script
+      src="https://lint.page/kit/4d0fe3.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div data-include="components/header.html"></div>
+    <main>
+      <h2>Project Proposal</h2>
+
+      <!-- PROJECT OVERVIEW -->
+      <section>
+        <h3>Project Overview</h3>
+
+        <h4>Application Description &amp; Purpose</h4>
+        <p>
+          This web application is a professional tutoring services website for my friend Nathan,
+          an independent tutor specializing in STEM subjects. The website will serve as a central
+          hub to introduce Nathan to prospective students and parents, outline his tutoring services,
+          and provide an easy way to schedule sessions. The site will also feature links to Nathan's
+          educational video content on YouTube and TikTok, extending his reach as an educator.
+        </p>
+
+        <h4>Intended Users</h4>
+        <ul>
+          <li>Students (middle school through college) seeking tutoring in Math, Physics, Python, or Java</li>
+          <li>Parents looking for qualified tutors for their children</li>
+          <li>Families interested in group tutoring sessions or package deals</li>
+          <li>Viewers of Nathan's social media content who want to learn more about his services</li>
+        </ul>
+
+        <h4>Overview of Website Content</h4>
+        <ul>
+          <li>Introduction to Nathan and his teaching philosophy</li>
+          <li>Detailed service offerings including individual and group tutoring options</li>
+          <li>Pricing information and package deals</li>
+          <li>Embedded scheduling system via Google Calendar</li>
+          <li>Testimonials from past students</li>
+          <li>FAQ section with cancellation policy</li>
+          <li>Contact form for inquiries</li>
+          <li>Links to educational video content on YouTube and TikTok</li>
+        </ul>
+      </section>
+
+      <!-- CLIENT INFORMATION -->
+      <section>
+        <h3>Client Information</h3>
+        <table>
+          <tr>
+            <th>Field</th>
+            <th>Information</th>
+          </tr>
+          <tr>
+            <td>Client Name</td>
+            <td>Nathan Acosta</td>
+          </tr>
+          <tr>
+            <td>Organization</td>
+            <td>Independent Tutor</td>
+          </tr>
+          <tr>
+            <td>Email</td>
+            <td><a href="mailto:nathan.a.math@gmail.com">nathan.a.math@gmail.com</a></td>
+          </tr>
+          <tr>
+            <td>Phone</td>
+            <td>(281) 966-8009</td>
+          </tr>
+        </table>
+      </section>
+
+      <!-- WIREFRAME -->
+      <section>
+        <h3>Wireframe</h3>
+        <p>
+          The wireframe below illustrates the default page layout for the tutoring website,
+          featuring a consistent header with navigation, hero section, main content area, and footer.
+        </p>
+        <figure>
+          <a href="https://drive.google.com/file/d/1FDXOWbUaacAl1876cxibyXkw-z44dHU3/view?usp=sharing" target="_blank">
+            <img src="images/wireframe.png" alt="Wireframe showing the default page layout with header, navigation, hero section, main content, and footer" />
+          </a>
+          <figcaption>Figure 1: Default page wireframe created in draw.io (<a href="https://drive.google.com/file/d/1FDXOWbUaacAl1876cxibyXkw-z44dHU3/view?usp=sharing" target="_blank">View in draw.io</a>)</figcaption>
+        </figure>
+      </section>
+
+      <!-- SITE MAP -->
+      <section>
+        <h3>Site Map</h3>
+        <p>
+          The site map below shows the hierarchical structure of the website and navigation paths
+          between pages. The site consists of five main pages accessible from the primary navigation.
+        </p>
+        <figure>
+          <a href="https://drive.google.com/file/d/1cCe4GcvKn7un8HzL4r13ko6qyJMfB60_/view?usp=sharing" target="_blank">
+            <img src="images/sitemap.png" alt="Site map showing Home at the top, with About, Services, Schedule, and Contact/FAQ as child pages" />
+          </a>
+          <figcaption>Figure 2: Site map created in draw.io (<a href="https://drive.google.com/file/d/1cCe4GcvKn7un8HzL4r13ko6qyJMfB60_/view?usp=sharing" target="_blank">View in draw.io</a>)</figcaption>
+        </figure>
+        <h4>Site Structure</h4>
+        <ul>
+          <li><strong>Home (index.html)</strong> - Main landing page</li>
+          <li><strong>About</strong> - Nathan's background and credentials</li>
+          <li><strong>Services</strong> - Tutoring offerings including group sessions</li>
+          <li><strong>Schedule</strong> - Google Calendar integration for booking</li>
+          <li><strong>Contact/FAQ</strong> - Contact form and frequently asked questions</li>
+        </ul>
+
+        <h4>Site-Wide Components</h4>
+        <ul>
+          <li><strong>Navigation Bar:</strong> Consistent header navigation enabling single-click access to all five pages</li>
+          <li><strong>Header:</strong> Uniform header component with logo/name and navigation across all pages</li>
+          <li><strong>Footer:</strong> Consistent footer including contact information, social media links, and HTML/CSS validation links (W3C Validator)</li>
+        </ul>
+      </section>
+
+      <!-- PAGE DESIGN -->
+      <section>
+        <h3>Page Design</h3>
+
+        <!-- Page 1: Home -->
+        <h4>Page 1: Home (index.html)</h4>
+        <table>
+          <tr>
+            <th>Attribute</th>
+            <th>Details</th>
+          </tr>
+          <tr>
+            <td>Purpose</td>
+            <td>Welcome visitors and provide quick navigation to key areas</td>
+          </tr>
+          <tr>
+            <td>Audience</td>
+            <td>All visitors (students, parents, general public)</td>
+          </tr>
+          <tr>
+            <td>Content</td>
+            <td>Hero image/banner, brief introduction to Nathan, subject highlights (Math, Physics, Python, Java), featured testimonial, call-to-action buttons</td>
+          </tr>
+          <tr>
+            <td>Data Entry</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <td>Validations</td>
+            <td>N/A</td>
+          </tr>
+          <tr>
+            <td>Interactive Elements</td>
+            <td>Navigation bar, CTA buttons linking to Services and Schedule pages, testimonial carousel preview</td>
+          </tr>
+          <tr>
+            <td>Actions</td>
+            <td>Click CTA &rarr; navigate to Services or Schedule; Click nav items &rarr; respective pages</td>
+          </tr>
+          <tr>
+            <td>Special Notes</td>
+            <td>Should load quickly and make a strong first impression</td>
+          </tr>
+        </table>
+
+        <!-- Page 2: About -->
+        <h4>Page 2: About</h4>
+        <table>
+          <tr>
+            <th>Attribute</th>
+            <th>Details</th>
+          </tr>
+          <tr>
+            <td>Purpose</td>
+            <td>Introduce Nathan, his background, qualifications, and teaching philosophy</td>
+          </tr>
+          <tr>
+            <td>Audience</td>
+            <td>Prospective students and parents evaluating his credibility</td>
+          </tr>
+          <tr>
+            <td>Content</td>
+            <td>Professional photo, biography, educational background, teaching experience, philosophy/approach to tutoring, links to YouTube and TikTok</td>
+          </tr>
+          <tr>
+            <td>Data Entry</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <td>Validations</td>
+            <td>N/A</td>
+          </tr>
+          <tr>
+            <td>Interactive Elements</td>
+            <td>Social media icon links (YouTube, TikTok), possibly embedded video introduction</td>
+          </tr>
+          <tr>
+            <td>Actions</td>
+            <td>Click social icons &rarr; open external links in new tab</td>
+          </tr>
+          <tr>
+            <td>Special Notes</td>
+            <td>Tone should be personable and professional; builds trust</td>
+          </tr>
+        </table>
+
+        <!-- Page 3: Services -->
+        <h4>Page 3: Services</h4>
+        <table>
+          <tr>
+            <th>Attribute</th>
+            <th>Details</th>
+          </tr>
+          <tr>
+            <td>Purpose</td>
+            <td>Detail all tutoring services, subjects, pricing, and group session options</td>
+          </tr>
+          <tr>
+            <td>Audience</td>
+            <td>Students and parents comparing tutoring options</td>
+          </tr>
+          <tr>
+            <td>Content</td>
+            <td>Subject cards (Math, Physics, Python, Java) with descriptions, individual session rates, group session packages and pricing, what's included in each service</td>
+          </tr>
+          <tr>
+            <td>Data Entry</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <td>Validations</td>
+            <td>N/A</td>
+          </tr>
+          <tr>
+            <td>Interactive Elements</td>
+            <td>Expandable/collapsible service cards, tabs or filters for Individual vs. Group sessions</td>
+          </tr>
+          <tr>
+            <td>Actions</td>
+            <td>Click subject card &rarr; expand details; Click "Book Now" button &rarr; navigate to Schedule page</td>
+          </tr>
+          <tr>
+            <td>Special Notes</td>
+            <td>Group sessions section should highlight family package deals clearly</td>
+          </tr>
+        </table>
+
+        <!-- Page 4: Schedule -->
+        <h4>Page 4: Schedule</h4>
+        <table>
+          <tr>
+            <th>Attribute</th>
+            <th>Details</th>
+          </tr>
+          <tr>
+            <td>Purpose</td>
+            <td>Allow visitors to view availability and book tutoring sessions</td>
+          </tr>
+          <tr>
+            <td>Audience</td>
+            <td>Students and parents ready to schedule</td>
+          </tr>
+          <tr>
+            <td>Content</td>
+            <td>Embedded Google Calendar showing availability, instructions for booking, cancellation policy summary with link to full policy</td>
+          </tr>
+          <tr>
+            <td>Data Entry</td>
+            <td>Via embedded Google Calendar (external tool)</td>
+          </tr>
+          <tr>
+            <td>Validations</td>
+            <td>Handled by Google Calendar</td>
+          </tr>
+          <tr>
+            <td>Interactive Elements</td>
+            <td>Embedded Google Calendar widget, link to Contact page for questions</td>
+          </tr>
+          <tr>
+            <td>Actions</td>
+            <td>Interact with calendar &rarr; book session through Google; Click policy link &rarr; navigate to FAQ section</td>
+          </tr>
+          <tr>
+            <td>Special Notes</td>
+            <td>Calendar must be responsive; include fallback contact method</td>
+          </tr>
+        </table>
+
+        <!-- Page 5: Contact/FAQ -->
+        <h4>Page 5: Contact/FAQ</h4>
+        <table>
+          <tr>
+            <th>Attribute</th>
+            <th>Details</th>
+          </tr>
+          <tr>
+            <td>Purpose</td>
+            <td>Answer common questions and provide a way to reach Nathan directly</td>
+          </tr>
+          <tr>
+            <td>Audience</td>
+            <td>Anyone with questions before booking</td>
+          </tr>
+          <tr>
+            <td>Content</td>
+            <td>FAQ accordion (pricing, scheduling, cancellation policy, group sessions, subjects covered), contact form, direct contact information</td>
+          </tr>
+          <tr>
+            <td>Data Entry</td>
+            <td>Yes - Contact form fields: Name, Email, Phone (optional), Subject dropdown, Message</td>
+          </tr>
+          <tr>
+            <td>Validations</td>
+            <td>
+              <ul>
+                <li>Name: required, minimum 2 characters</li>
+                <li>Email: required, valid email format</li>
+                <li>Message: required, minimum 10 characters</li>
+                <li>Phone: optional, valid phone format if entered</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Interactive Elements</td>
+            <td>FAQ accordion (expand/collapse), form validation feedback, submit button</td>
+          </tr>
+          <tr>
+            <td>Actions</td>
+            <td>Click FAQ item &rarr; expand/collapse answer; Submit form &rarr; validate inputs, show success/error message</td>
+          </tr>
+          <tr>
+            <td>Special Notes</td>
+            <td>Cancellation policy should be prominently featured in FAQ</td>
+          </tr>
+        </table>
+      </section>
+
+      <!-- DYNAMIC FUNCTIONALITY -->
+      <section>
+        <h3>Dynamic Functionality</h3>
+        <p>
+          The following JavaScript/jQuery features will be implemented to meet the interactivity
+          requirements and enhance user experience:
+        </p>
+
+        <table>
+          <tr>
+            <th>Feature</th>
+            <th>Page(s)</th>
+            <th>Description</th>
+            <th>Example Website</th>
+          </tr>
+          <tr>
+            <td>Testimonial Carousel</td>
+            <td>Home</td>
+            <td>Auto-rotating slider displaying student testimonials with navigation dots and arrows. Built using jQuery and a plugin such as Slick Carousel.</td>
+            <td><a href="https://frogtutoring.com/" target="_blank">Frog Tutoring</a> - Homepage features a slideshow carousel of students and tutors</td>
+          </tr>
+          <tr>
+            <td>FAQ Accordion</td>
+            <td>Contact/FAQ</td>
+            <td>Expandable Q&amp;A sections using jQuery UI Accordion widget. Only one section remains open at a time for clean presentation.</td>
+            <td><a href="https://business.whatsapp.com/resources/faq" target="_blank">WhatsApp Business FAQ</a> - Features expandable accordion sections organized by topic</td>
+          </tr>
+          <tr>
+            <td>Form Validation</td>
+            <td>Contact/FAQ</td>
+            <td>Real-time validation on contact form inputs with inline error messages. Required fields are highlighted, and email format is verified before submission.</td>
+            <td><a href="https://lp.opaldentalstudio.com/" target="_blank">Opal Dental Studio</a> - Contact form with real-time input validation</td>
+          </tr>
+          <tr>
+            <td>Google Calendar Embed</td>
+            <td>Schedule</td>
+            <td>Embedded Google Calendar displaying Nathan's availability for booking sessions. Uses iframe integration with responsive sizing.</td>
+            <td><a href="https://workspace.google.com/resources/appointment-scheduling/" target="_blank">Google Workspace Appointment Scheduling</a> - Demonstrates embedded calendar booking</td>
+          </tr>
+          <tr>
+            <td>Service Card Interactions</td>
+            <td>Services</td>
+            <td>Click-to-expand cards revealing detailed information about each tutoring subject. Implemented using jQuery slideToggle or accordion-style behavior.</td>
+            <td><a href="https://www.zendesk.com/pricing/" target="_blank">Zendesk Pricing Page</a> - Features expandable service/pricing cards with feature comparisons</td>
+          </tr>
+          <tr>
+            <td>AJAX Content Loading</td>
+            <td>Home, About</td>
+            <td>Testimonials and dynamic content loaded asynchronously using jQuery AJAX or Fetch API. Content is retrieved from JSON files without page reload, improving performance and user experience.</td>
+            <td><a href="https://www.youtube.com" target="_blank">YouTube</a> - Dynamically loads more video content as user scrolls without page refresh</td>
+          </tr>
+        </table>
+
+        <h4>Additional JavaScript Features</h4>
+        <ul>
+          <li><strong>Smooth Scrolling:</strong> Navigation links smoothly scroll to page sections</li>
+          <li><strong>Form Field Focus Effects:</strong> Visual feedback when users interact with form inputs</li>
+          <li><strong>Social Media Link Animations:</strong> Hover effects on YouTube and TikTok icons</li>
+        </ul>
+      </section>
+
+    </main>
+    <div data-include="components/footer.html"></div>
+    <script src="scripts/HTMLInclude.min.js"></script>
+  </body>
+</html>
