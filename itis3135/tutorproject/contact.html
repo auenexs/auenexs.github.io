@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact &amp; FAQ — Nathan Acosta Tutoring</title>
+  <link rel="stylesheet" href="styles/tutor.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-name">Nathan Acosta</div>
+      <div class="logo-tagline">STEM Tutoring</div>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="schedule.html">Schedule</a></li>
+        <li><a href="contact.html" class="active">Contact &amp; FAQ</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-banner">
+    <div class="container">
+      <h1>Contact &amp; FAQ</h1>
+      <p>Get in touch or find answers to common questions</p>
+    </div>
+  </section>
+
+  <!-- Contact + Info -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-layout">
+
+        <!-- Contact Form -->
+        <div>
+          <h2>Send a Message</h2>
+          <p style="color:var(--text-light);margin-bottom:1.5rem;">Have a question before booking? Fill out the form and Nathan will get back to you within 24 hours.</p>
+          <form class="contact-form" action="#" method="post" novalidate>
+            <div class="field">
+              <label for="name">Full Name <span style="color:#c0392b;">*</span></label>
+              <input type="text" id="name" name="name" placeholder="Jane Smith" required minlength="2">
+            </div>
+            <div class="field">
+              <label for="email">Email Address <span style="color:#c0392b;">*</span></label>
+              <input type="email" id="email" name="email" placeholder="jane@example.com" required>
+            </div>
+            <div class="field">
+              <label for="phone">Phone Number <span style="color:var(--text-light);font-weight:400;">(optional)</span></label>
+              <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" pattern="[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}">
+            </div>
+            <div class="field">
+              <label for="subject">Subject</label>
+              <select id="subject" name="subject">
+                <option value="">— Select a subject —</option>
+                <option value="math">Mathematics</option>
+                <option value="physics">Physics</option>
+                <option value="python">Python</option>
+                <option value="java">Java</option>
+                <option value="group">Group / Package Inquiry</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="message">Message <span style="color:#c0392b;">*</span></label>
+              <textarea id="message" name="message" placeholder="Tell Nathan a bit about your goals, current level, and any specific topics you'd like to cover..." required minlength="10"></textarea>
+            </div>
+            <button type="submit">Send Message</button>
+          </form>
+        </div>
+
+        <!-- Contact Info Block -->
+        <div>
+          <div class="contact-info-block">
+            <h3>Get in Touch</h3>
+            <div class="contact-info-item">
+              <span class="icon">✉</span>
+              <p><a href="mailto:nathan.a.math@gmail.com">nathan.a.math@gmail.com</a><br>
+              Best for detailed inquiries. Responds within 24 hours.</p>
+            </div>
+            <div class="contact-info-item">
+              <span class="icon">📞</span>
+              <p><a href="tel:+12819668009">(281) 966-8009</a><br>
+              Available Mon–Fri, 10 AM – 7 PM CST.</p>
+            </div>
+            <div class="contact-info-item">
+              <span class="icon">📍</span>
+              <p>Houston, TX area (in-person)<br>
+              Virtual sessions available nationwide.</p>
+            </div>
+            <div class="contact-info-item">
+              <span class="icon">▶</span>
+              <p><a href="https://youtube.com/@nathanacosta" target="_blank" rel="noopener">YouTube — Free tutorial videos</a></p>
+            </div>
+            <div class="contact-info-item">
+              <span class="icon">♪</span>
+              <p><a href="https://tiktok.com/@nathanacosta" target="_blank" rel="noopener">TikTok — Quick tips &amp; tricks</a></p>
+            </div>
+          </div>
+
+          <div style="margin-top:1.5rem;background:var(--white);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);">
+            <h4 style="margin-bottom:0.5rem;">Ready to book?</h4>
+            <p style="color:var(--text-light);font-size:0.9rem;margin-bottom:1rem;">Skip the form and go straight to scheduling your session.</p>
+            <a href="schedule.html" class="btn btn-primary" style="width:100%;text-align:center;display:block;">View Schedule &amp; Book</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="alt">
+    <div class="container">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="divider"></div>
+
+      <details>
+        <summary>What subjects does Nathan tutor?</summary>
+        <div class="faq-answer">
+          <p>Nathan tutors Mathematics (Pre-Algebra through Calculus III, Statistics, Discrete Math, Linear Algebra), Physics (intro through university level), Python programming, and Java programming.</p>
+          <p>If you have a related subject in mind not listed, feel free to ask — Nathan may still be able to help.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>How much does tutoring cost?</summary>
+        <div class="faq-answer">
+          <p>Individual sessions are $45/hour for Math and Physics, and $50/hour for Python and Java. Group sessions and multi-session packages are available at discounted rates — see the <a href="services.html#group" style="color:var(--primary);font-weight:600;">Services page</a> for full pricing.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Are sessions in-person or online?</summary>
+        <div class="faq-answer">
+          <p>Both options are available. Virtual sessions are held via Zoom or Google Meet and are available to students anywhere. In-person sessions are offered in the Houston, TX area at a mutually agreed-upon location (library, coffee shop, etc.).</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>How do I schedule a session?</summary>
+        <div class="faq-answer">
+          <p>Visit the <a href="schedule.html" style="color:var(--primary);font-weight:600;">Schedule page</a> to view Nathan's availability and request a session through the embedded Google Calendar. You can also email or call Nathan directly to arrange a time.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>What is the cancellation policy?</summary>
+        <div class="faq-answer">
+          <p><strong>24+ hours notice:</strong> Full refund or free reschedule, no questions asked.</p>
+          <p><strong>Less than 24 hours:</strong> The session fee is forfeited. Documented emergencies may be excepted at Nathan's discretion.</p>
+          <p><strong>No-shows:</strong> Full session fee is charged. Please always communicate if you can't make it.</p>
+          <p>To reschedule, contact Nathan by email at <a href="mailto:nathan.a.math@gmail.com" style="color:var(--primary);">nathan.a.math@gmail.com</a> or by phone at least 24 hours in advance.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Do you offer group sessions or family packages?</summary>
+        <div class="faq-answer">
+          <p>Yes! Small group sessions (2–3 students) are $30/hour per student, and study groups of 4–5 students are $22/hour per student. A 10-session Family Pack covering up to 3 students is available for $400. See the <a href="services.html#group" style="color:var(--primary);font-weight:600;">Services page</a> for all options.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>What grade levels do you work with?</summary>
+        <div class="faq-answer">
+          <p>Nathan works with students from middle school (grades 6–8) through college level. High school students preparing for AP exams, SAT/ACT math sections, or just keeping up with coursework are all welcome.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>How should I prepare for my first session?</summary>
+        <div class="faq-answer">
+          <p>Bring any relevant textbooks, notes, homework, or past tests you'd like to review. For programming sessions, have your development environment set up if possible (Nathan can help with setup too). Most importantly, come with specific questions or topics you want to tackle — the more focused, the more productive the session.</p>
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-name">Nathan Acosta Tutoring</div>
+        <p>Expert STEM tutoring for students from middle school through college. Building confidence and real understanding, one session at a time.</p>
+      </div>
+      <div>
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Nathan</a></li>
+          <li><a href="services.html">Services &amp; Pricing</a></li>
+          <li><a href="schedule.html">Schedule a Session</a></li>
+          <li><a href="contact.html">Contact &amp; FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:nathan.a.math@gmail.com">nathan.a.math@gmail.com</a></li>
+          <li><a href="tel:+12819668009">(281) 966-8009</a></li>
+          <li><a href="https://youtube.com/@nathanacosta" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://tiktok.com/@nathanacosta" target="_blank" rel="noopener">TikTok</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Nathan Acosta Tutoring. All rights reserved.</p>
+      <div class="footer-validators">
+        <a href="https://validator.w3.org/check?uri=referer" target="_blank" rel="noopener">HTML Valid</a>
+        <a href="https://jigsaw.w3.org/css-validator/check/referer" target="_blank" rel="noopener">CSS Valid</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
