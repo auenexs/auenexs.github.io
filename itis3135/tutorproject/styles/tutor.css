@@ -719,25 +719,260 @@ footer ul li a:hover { color: var(--accent); }
 
 .footer-validators { display: flex; gap: 1rem; }
 
+/* ── MOBILE NAVIGATION TOGGLE ────────────────── */
+
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 101;
+}
+
+.hamburger {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--white);
+  position: relative;
+  transition: background-color 0.2s;
+}
+
+.hamburger::before,
+.hamburger::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 24px;
+  height: 2px;
+  background-color: var(--white);
+  transition: transform 0.3s ease;
+}
+
+.hamburger::before { top: -7px; }
+.hamburger::after  { top: 7px; }
+
+/* Active state - X shape */
+.nav-toggle.active .hamburger {
+  background-color: transparent;
+}
+
+.nav-toggle.active .hamburger::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+.nav-toggle.active .hamburger::after {
+  transform: rotate(-45deg);
+  top: 0;
+}
+
+/* ── FORM VALIDATION STATES ──────────────────── */
+
+.field-error {
+  border-color: #c0392b !important;
+  box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.15) !important;
+}
+
+.field-success {
+  border-color: #27ae60 !important;
+  box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.15) !important;
+}
+
+.error-message {
+  display: block;
+  color: #c0392b;
+  font-size: 0.82rem;
+  margin-top: 0.35rem;
+  font-weight: 500;
+}
+
+.form-success {
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  color: #155724;
+  padding: 2rem;
+  border-radius: var(--radius);
+  text-align: center;
+}
+
+.form-success h3 {
+  color: #155724;
+  margin-bottom: 0.5rem;
+}
+
+.form-success p {
+  margin: 0;
+}
+
+/* ── PRICING CALCULATOR ──────────────────────── */
+
+.calculator-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.calculator-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.calc-field label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+  color: var(--primary);
+  font-size: 0.88rem;
+}
+
+.calc-field select {
+  width: 100%;
+  padding: 0.72rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: var(--text);
+  background-color: var(--white);
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.calc-field select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(240,165,0,0.15);
+}
+
+.calculator-result {
+  background: var(--bg);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  min-height: 200px;
+}
+
+.calc-placeholder {
+  color: var(--text-light);
+  font-style: italic;
+  text-align: center;
+  margin: 3rem 0;
+}
+
+.calc-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.calc-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.95rem;
+}
+
+.calc-row:last-child {
+  border-bottom: none;
+}
+
+.calc-row span:first-child {
+  color: var(--text-light);
+}
+
+.calc-row span:last-child {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.calc-total {
+  margin-top: 0.5rem;
+  padding-top: 1rem !important;
+  border-top: 2px solid var(--primary);
+  border-bottom: none !important;
+}
+
+.calc-total span:first-child {
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.calc-total span:last-child {
+  color: var(--primary);
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.calc-savings {
+  background-color: rgba(39, 174, 96, 0.1);
+  margin: 0.5rem -1rem -0.5rem;
+  padding: 0.75rem 1rem !important;
+  border-radius: 0 0 var(--radius) var(--radius);
+  border-bottom: none !important;
+}
+
+.calc-savings span:first-child {
+  color: #27ae60;
+}
+
+.calc-savings span:last-child {
+  color: #27ae60;
+}
+
 /* ── RESPONSIVE ───────────────────────────────── */
 
 @media (max-width: 768px) {
-  .header-inner {
-    flex-direction: column;
-    height: auto;
-    padding: 0.9rem 1.25rem;
-    gap: 0.6rem;
+  /* Mobile Navigation */
+  .nav-toggle {
+    display: block;
   }
 
-  nav ul { flex-wrap: wrap; justify-content: center; gap: 0.2rem; }
-  nav ul li a { padding: 0.35rem 0.6rem; font-size: 0.8rem; }
+  .header-inner {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 0.9rem 1.25rem;
+  }
+
+  header nav {
+    display: none;
+    width: 100%;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    margin-top: 0.75rem;
+  }
+
+  header nav.nav-open {
+    display: block;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  nav ul li a {
+    display: block;
+    padding: 0.65rem 1rem;
+    font-size: 0.95rem;
+    text-align: center;
+  }
 
   .hero h1      { font-size: 2rem; }
   .page-banner h1 { font-size: 1.8rem; }
 
   .about-grid,
   .contact-layout,
-  .service-card-body { grid-template-columns: 1fr; }
+  .service-card-body,
+  .calculator-card { grid-template-columns: 1fr; }
 
   .footer-grid { grid-template-columns: 1fr; }
 

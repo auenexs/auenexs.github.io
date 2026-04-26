@@ -14,6 +14,9 @@
       <div class="logo-name">Nathan Acosta</div>
       <div class="logo-tagline">STEM Tutoring</div>
     </a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span class="hamburger"></span>
+    </button>
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -211,6 +214,54 @@
     </div>
   </section>
 
+  <!-- Pricing Calculator -->
+  <section id="calculator">
+    <div class="container">
+      <h2 class="section-title">Pricing Calculator</h2>
+      <p class="section-subtitle">Estimate your tutoring costs based on your needs</p>
+      <div class="divider"></div>
+
+      <div id="pricing-calculator" class="calculator-card">
+        <div class="calculator-inputs">
+          <div class="calc-field">
+            <label for="calc-subject">Subject</label>
+            <select id="calc-subject" name="calc-subject">
+              <option value="">— Select a subject —</option>
+              <option value="math">Mathematics ($45/hr)</option>
+              <option value="physics">Physics ($45/hr)</option>
+              <option value="python">Python ($50/hr)</option>
+              <option value="java">Java ($50/hr)</option>
+            </select>
+          </div>
+          <div class="calc-field">
+            <label for="calc-sessions">Number of Sessions</label>
+            <select id="calc-sessions" name="calc-sessions">
+              <option value="1">1 session</option>
+              <option value="2">2 sessions</option>
+              <option value="3">3 sessions</option>
+              <option value="4">4 sessions</option>
+              <option value="5">5 sessions (5-pack discount)</option>
+              <option value="10">10 sessions (package discount)</option>
+            </select>
+          </div>
+          <div class="calc-field">
+            <label for="calc-group">Group Size</label>
+            <select id="calc-group" name="calc-group">
+              <option value="1">1 student (individual)</option>
+              <option value="2">2 students (small group)</option>
+              <option value="3">3 students (small group)</option>
+              <option value="4">4 students (study group)</option>
+              <option value="5">5 students (study group)</option>
+            </select>
+          </div>
+        </div>
+        <div id="calc-result" class="calculator-result">
+          <p class="calc-placeholder">Select a subject to see pricing</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <footer>
@@ -250,5 +301,6 @@
   </div>
 </footer>
 
+<script src="scripts/main.js"></script>
 </body>
 </html>
