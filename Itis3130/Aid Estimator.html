@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Financial Aid Estimator — UNC Charlotte Admissions</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green-deep:  #005035;
+      --green-mid:   #00693e;
+      --green-light: #e8f0ec;
+      --gold:        #a89232;
+      --gold-bright: #c9a227;
+      --gold-pale:   #f5efc7;
+      --ink:         #1a1a18;
+      --muted:       #5a5a55;
+      --border:      #ddd9d0;
+      --surface:     #f7f6f2;
+      --white:       #fdfcf8;
+      --blue:        #1a5fa8;
+      --blue-pale:   #e8f0fb;
+      --red:         #c0392b;
+      --red-pale:    #fdf0ee;
+      --font-display:'Barlow Condensed', sans-serif;
+      --font-body:   'DM Sans', sans-serif;
+      --font-mono:   'DM Mono', monospace;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--surface);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: var(--green-deep); border-bottom: 2px solid var(--gold);
+      height: 64px; padding: 0 48px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-logo-mark {
+      width: 36px; height: 36px; background: var(--gold); border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-weight: 900; font-size: 18px; color: var(--green-deep);
+    }
+    .nav-logo-text {
+      font-family: var(--font-display); font-weight: 700; font-size: 15px;
+      letter-spacing: .06em; text-transform: uppercase; color: #fff; line-height: 1.2;
+    }
+    .nav-logo-text span { color: var(--gold-bright); }
+    .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+    .nav-links a {
+      font-size: 13px; font-weight: 500; letter-spacing: .05em; text-transform: uppercase;
+      color: rgba(255,255,255,.7); text-decoration: none; transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--gold-bright); }
+    .nav-links a.active { color: #fff; }
+    .nav-cta {
+      background: var(--gold); color: var(--green-deep) !important;
+      padding: 8px 20px; border-radius: 3px; font-weight: 700 !important;
+    }
+
+    input[type=range] {
+      -webkit-appearance: none; appearance: none;
+      width: 100%; height: 6px; border-radius: 3px;
+      background: var(--border); outline: none; cursor: pointer;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none; appearance: none;
+      width: 20px; height: 20px; border-radius: 50%;
+      background: var(--green-deep); border: 3px solid white;
+      box-shadow: 0 1px 6px rgba(0,0,0,.2); cursor: pointer;
+    }
+    input[type=range]::-moz-range-thumb {
+      width: 20px; height: 20px; border-radius: 50%;
+      background: var(--green-deep); border: 3px solid white;
+      box-shadow: 0 1px 6px rgba(0,0,0,.2); cursor: pointer;
+    }
+    input[type=range].gold::-webkit-slider-thumb { background: var(--gold-bright); }
+    input[type=range].gold::-moz-range-thumb { background: var(--gold-bright); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="Transfer Admissions.html">
+    <div class="nav-logo-mark">49</div>
+    <div class="nav-logo-text">UNC Charlotte<br /><span>Undergraduate Admissions</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="Transfer Admissions.html">Admissions</a></li>
+    <li><a href="Credit Transfer Checker.html">Credit Checker</a></li>
+    <li><span class="active nav-cta" style="font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;">Aid Estimator</span></li>
+  </ul>
+</nav>
+
+<div id="root"></div>
+
+<script type="text/babel">
+
+/* ─── CONSTANTS (design defaults applied directly) ─── */
+const SHOW_SCHOLARSHIPS  = true;
+const SHOW_DISCLAIMER    = true;
+const DEFAULT_ENROLLMENT = 'full';
+
+const COST_OF_ATTENDANCE = {
+  full:  { tuition: 7404, housing: 7800, dining: 4400, books: 1200, personal: 2800 },
+  three: { tuition: 5553, housing: 5850, dining: 3300, books: 900,  personal: 2100 },
+  half:  { tuition: 3702, housing: 0,    dining: 0,    books: 600,  personal: 1400 },
+};
+
+const PELL_TABLE = {
+  0: 7395, 1: 6895, 2: 6345, 3: 5895, 4: 5295,
+  5: 4695, 6: 4095, 7: 3495, 8: 2895, 9: 2295,
+  10: 1695, 11: 1095, 12: 695, 13: 0,
+};
+
+const SCHOLARSHIPS = [
+  { name: "Transfer Excellence Award",      type: "Merit",  amount: 5000, criteria: "GPA ≥ 3.5",                        renewable: true,  deadline: "Feb 15",              gpaMin: 3.5, needBased: false, color: "var(--green-deep)" },
+  { name: "Niner Transfer Merit Award",     type: "Merit",  amount: 3500, criteria: "GPA 3.0–3.49",                     renewable: true,  deadline: "Mar 1",               gpaMin: 3.0, needBased: false, color: "var(--green-mid)"  },
+  { name: "Transfer Achievement Scholarship",type:"Merit",  amount: 2000, criteria: "GPA 2.5–2.99",                     renewable: false, deadline: "Mar 1",               gpaMin: 2.5, needBased: false, color: "var(--green-mid)"  },
+  { name: "Niner Need-Based Grant",         type: "Need",   amount: 4000, criteria: "Demonstrated financial need",      renewable: true,  deadline: "FAFSA priority: Mar 1",gpaMin: 0,   needBased: true,  color: "var(--gold)"       },
+  { name: "Transfer Student Emergency Fund",type: "Grant",  amount: 1500, criteria: "Demonstrated need + transfer status",renewable:false, deadline: "Rolling",             gpaMin: 0,   needBased: true,  color: "var(--gold)"       },
+  { name: "NC Community College Grant",     type: "State",  amount: 3200, criteria: "NC resident, demonstrated need",   renewable: true,  deadline: "FAFSA filing required",gpaMin: 0,   needBased: true,  color: "var(--blue)"       },
+];
+
+/* ─── HELPERS ─── */
+const fmt   = n => '$' + Math.round(n).toLocaleString();
+const clamp = (v, min, max) => Math.min(Math.max(v, min), max);
+
+function calcAid({ householdIncome, householdSize, efc, gpa, pellSemestersUsed, enrollment, transferCredits, residency }) {
+  const costs    = COST_OF_ATTENDANCE[enrollment];
+  const totalCOA = Object.values(costs).reduce((s, v) => s + v, 0);
+
+  const pellEligible  = efc <= 6206 && pellSemestersUsed < 12;
+  const efcBracket    = clamp(Math.floor(efc / 500), 0, 13);
+  const rawPell       = pellEligible ? (PELL_TABLE[efcBracket] || 0) : 0;
+  const pellAdjusted  = enrollment === 'half' ? rawPell * 0.5 : enrollment === 'three' ? rawPell * 0.75 : rawPell;
+
+  const incomeScore        = clamp(1 - (householdIncome / 80000), 0, 1);
+  const sizeBonus          = Math.max(0, (householdSize - 2)) * 200;
+  const institutionalGrant = Math.round(incomeScore * 4800 + sizeBonus);
+
+  const stateGrant = residency === 'instate' && efc < 3000 ? clamp(3200 - (efc * 0.3), 0, 3200) : 0;
+
+  const meritAward   = gpa >= 3.5 ? 5000 : gpa >= 3.0 ? 3500 : gpa >= 2.5 ? 2000 : 0;
+  const enrollAdj    = enrollment === 'half' ? 0.5 : enrollment === 'three' ? 0.75 : 1;
+  const meritAdjusted = Math.round(meritAward * enrollAdj);
+
+  const wsEligible = efc < 5000;
+  const workStudy  = wsEligible ? 2400 : 0;
+
+  const totalGrants  = Math.min(pellAdjusted + institutionalGrant + stateGrant + meritAdjusted, totalCOA);
+  const remainingNeed    = Math.max(totalCOA - totalGrants, 0);
+  const subsidizedLoan   = efc < 6206 ? Math.min(remainingNeed, 3500) : 0;
+  const unsubsidizedLoan = Math.min(Math.max(remainingNeed - subsidizedLoan, 0), 2000);
+  const totalLoans   = subsidizedLoan + unsubsidizedLoan;
+  const outOfPocket  = Math.max(totalCOA - totalGrants - totalLoans, 0);
+
+  return {
+    totalCOA, costs,
+    pellGrant:          Math.round(pellAdjusted),
+    institutionalGrant: Math.round(institutionalGrant),
+    stateGrant:         Math.round(stateGrant),
+    meritAward:         Math.round(meritAdjusted),
+    workStudy,
+    totalGrants:        Math.round(totalGrants),
+    subsidizedLoan:     Math.round(subsidizedLoan),
+    unsubsidizedLoan:   Math.round(unsubsidizedLoan),
+    totalLoans:         Math.round(totalLoans),
+    outOfPocket:        Math.round(outOfPocket),
+    netCost:            Math.round(outOfPocket),
+  };
+}
+
+/* ─── SHARED UI ─── */
+function FieldLabel({ children, hint }) {
+  return (
+    <div style={{ marginBottom: 8 }}>
+      <label style={{ fontSize: 13, fontWeight: 600, color: 'var(--ink)', display: 'block' }}>{children}</label>
+      {hint && <div style={{ fontSize: 11, color: 'var(--muted)', marginTop: 2 }}>{hint}</div>}
+    </div>
+  );
+}
+
+function SliderField({ label, hint, value, min, max, step = 1, format, onChange, accent = false }) {
+  const pct = ((value - min) / (max - min)) * 100;
+  return (
+    <div style={{ marginBottom: 24 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 8 }}>
+        <FieldLabel hint={hint}>{label}</FieldLabel>
+        <div style={{
+          fontFamily: 'var(--font-mono)', fontWeight: 700, fontSize: 15,
+          color: accent ? 'var(--gold)' : 'var(--green-deep)',
+          background: accent ? 'var(--gold-pale)' : 'var(--green-light)',
+          padding: '3px 10px', borderRadius: 2,
+        }}>{format ? format(value) : value}</div>
+      </div>
+      <div style={{ position: 'relative' }}>
+        <div style={{
+          position: 'absolute', top: '50%', left: 0,
+          width: `${pct}%`, height: 6,
+          background: accent ? 'var(--gold-bright)' : 'var(--green-deep)',
+          borderRadius: '3px 0 0 3px', transform: 'translateY(-50%)',
+          pointerEvents: 'none', zIndex: 1,
+        }} />
+        <input
+          type="range" className={accent ? 'gold' : ''}
+          min={min} max={max} step={step} value={value}
+          onChange={e => onChange(Number(e.target.value))}
+          style={{ position: 'relative', zIndex: 2, background: 'transparent' }}
+        />
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 4 }}>
+        <span style={{ fontSize: 10, color: 'var(--muted)', fontFamily: 'var(--font-mono)' }}>{format ? format(min) : min}</span>
+        <span style={{ fontSize: 10, color: 'var(--muted)', fontFamily: 'var(--font-mono)' }}>{format ? format(max) : max}</span>
+      </div>
+    </div>
+  );
+}
+
+function RadioGroup({ label, hint, options, value, onChange }) {
+  return (
+    <div style={{ marginBottom: 24 }}>
+      <FieldLabel hint={hint}>{label}</FieldLabel>
+      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+        {options.map(opt => (
+          <button key={String(opt.value)} onClick={() => onChange(opt.value)} style={{
+            flex: 1, minWidth: 80, padding: '10px 12px', borderRadius: 3,
+            border: `1.5px solid ${value === opt.value ? 'var(--green-deep)' : 'var(--border)'}`,
+            background: value === opt.value ? 'var(--green-deep)' : 'var(--white)',
+            color: value === opt.value ? '#fff' : 'var(--muted)',
+            fontFamily: 'var(--font-body)', fontSize: 13, fontWeight: 600,
+            cursor: 'pointer', transition: 'all .15s', textAlign: 'center',
+          }}>
+            <div style={{ fontSize: 13, fontWeight: 700 }}>{opt.label}</div>
+            {opt.sub && <div style={{ fontSize: 10, opacity: .7, marginTop: 2 }}>{opt.sub}</div>}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ─── STEP BAR ─── */
+function StepBar({ step }) {
+  const LABELS = ['About You', 'Your Finances', 'Your Goals'];
+  return (
+    <div style={{ display: 'flex', gap: 0 }}>
+      {LABELS.map((label, i) => {
+        const active = i + 1 === step;
+        const done   = i + 1 < step;
+        return (
+          <div key={i} style={{ flex: 1, position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
+            {i > 0 && (
+              <div style={{
+                position: 'absolute', top: 14, right: '50%', left: '-50%', height: 2,
+                background: done || active ? 'var(--green-deep)' : 'var(--border)',
+                transition: 'background .3s',
+              }} />
+            )}
+            <div style={{
+              width: 28, height: 28, borderRadius: '50%', position: 'relative', zIndex: 1,
+              background: done || active ? 'var(--green-deep)' : 'var(--border)',
+              border: active ? '3px solid var(--green-light)' : '3px solid transparent',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              transition: 'all .3s',
+              boxShadow: active ? '0 0 0 2px var(--green-deep)' : 'none',
+            }}>
+              {done ? (
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              ) : (
+                <span style={{ fontSize: 11, fontWeight: 700, color: active ? '#fff' : 'var(--muted)', fontFamily: 'var(--font-mono)' }}>{i + 1}</span>
+              )}
+            </div>
+            <div style={{ fontSize: 11, fontWeight: active ? 700 : 400, color: active ? 'var(--green-deep)' : 'var(--muted)', letterSpacing: '.04em', whiteSpace: 'nowrap' }}>
+              {label}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+/* ─── AID BAR ─── */
+function AidBar({ items }) {
+  const colors = ['var(--green-deep)', 'var(--green-mid)', 'var(--gold-bright)', 'var(--gold)', '#1a5fa8', '#6b7f9e'];
+  const nonZero = items.filter(i => i.amount > 0);
+  return (
+    <div>
+      <div style={{ display: 'flex', height: 12, borderRadius: 6, overflow: 'hidden', gap: 1, marginBottom: 8 }}>
+        {nonZero.map((item, idx) => (
+          <div key={idx} style={{ flex: item.amount, background: colors[idx % colors.length], transition: 'flex .5s ease', minWidth: 2 }} />
+        ))}
+      </div>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px 16px' }}>
+        {nonZero.map((item, idx) => (
+          <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+            <div style={{ width: 8, height: 8, borderRadius: 2, background: colors[idx % colors.length], flexShrink: 0 }} />
+            <span style={{ fontSize: 11, color: 'var(--muted)' }}>{item.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ─── RESULTS ─── */
+function Results({ data, enrollment, setEnrollment, gpa, onEdit }) {
+  const aid      = calcAid({ ...data, enrollment });
+  const totalCOA = aid.totalCOA;
+
+  const aidRows = [
+    { label: 'Federal Pell Grant',    amount: aid.pellGrant,          type: 'grant',     color: 'var(--green-deep)', note: 'Federal — does not need to be repaid' },
+    { label: 'Institutional Grant',   amount: aid.institutionalGrant, type: 'grant',     color: 'var(--green-mid)',  note: 'UNC Charlotte need-based grant' },
+    { label: 'NC State Grant',        amount: aid.stateGrant,         type: 'grant',     color: '#2e7d32',           note: 'NC resident grant' },
+    { label: 'Merit Scholarship',     amount: aid.meritAward,         type: 'grant',     color: 'var(--gold-bright)',note: gpa >= 3.5 ? 'Transfer Excellence Award' : gpa >= 3.0 ? 'Niner Transfer Merit Award' : 'Transfer Achievement Scholarship' },
+    { label: 'Federal Work-Study',    amount: aid.workStudy,          type: 'workstudy', color: '#1a5fa8',           note: 'Part-time campus employment' },
+    { label: 'Subsidized Loan',       amount: aid.subsidizedLoan,     type: 'loan',      color: '#6b7f9e',           note: 'Federal — must be repaid' },
+    { label: 'Unsubsidized Loan',     amount: aid.unsubsidizedLoan,   type: 'loan',      color: '#8a9ab8',           note: 'Federal — must be repaid; interest accrues' },
+  ].filter(r => r.amount > 0);
+
+  const matchedScholarships = SCHOLARSHIPS.filter(s => {
+    if (s.needBased && data.efc > 6000) return false;
+    if (s.gpaMin > 0 && gpa < s.gpaMin) return false;
+    return true;
+  });
+
+  const enrollOpts = [
+    { value: 'full',  label: 'Full-Time',      sub: '12+ credits' },
+    { value: 'three', label: 'Three-Quarter',   sub: '9–11 credits' },
+    { value: 'half',  label: 'Half-Time',       sub: '6–8 credits' },
+  ];
+
+  return (
+    <div>
+      {/* Hero result */}
+      <div style={{ background: 'var(--green-deep)', borderRadius: 4, padding: '36px 40px', marginBottom: 28, position: 'relative', overflow: 'hidden' }}>
+        <div style={{
+          position: 'absolute', right: -10, bottom: -20,
+          fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: 200,
+          color: 'transparent', WebkitTextStroke: '1px rgba(200,162,39,.1)',
+          lineHeight: 1, pointerEvents: 'none', userSelect: 'none',
+        }}>$</div>
+        <div style={{ position: 'relative', zIndex: 2 }}>
+          <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: '.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,.5)', marginBottom: 8 }}>
+            Your Estimated Net Cost
+          </div>
+          <div style={{ display: 'flex', alignItems: 'flex-end', gap: 24, flexWrap: 'wrap' }}>
+            <div>
+              <div style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: 'clamp(48px,5vw,72px)', lineHeight: .9, color: '#fff', letterSpacing: '-.02em' }}>
+                {fmt(aid.netCost)}
+                <span style={{ fontSize: 20, fontWeight: 600, color: 'rgba(255,255,255,.5)', marginLeft: 4 }}>/yr</span>
+              </div>
+              <div style={{ fontSize: 13, color: 'rgba(255,255,255,.55)', marginTop: 8 }}>
+                After {fmt(aid.totalGrants)} in grants &amp; scholarships
+              </div>
+            </div>
+            <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
+              {[
+                { val: fmt(aid.totalGrants), label: 'Free Money',        color: 'var(--gold-bright)' },
+                { val: fmt(aid.totalLoans),  label: 'Loans (Optional)',   color: 'rgba(255,255,255,.75)' },
+                { val: fmt(totalCOA),        label: 'Cost of Attendance', color: 'rgba(255,255,255,.75)' },
+              ].map((item, i) => (
+                <React.Fragment key={i}>
+                  {i > 0 && <div style={{ width: 1, background: 'rgba(255,255,255,.1)', alignSelf: 'stretch' }} />}
+                  <div style={{ textAlign: 'center' }}>
+                    <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 28, color: item.color, letterSpacing: '-.02em', lineHeight: 1 }}>{item.val}</div>
+                    <div style={{ fontSize: 10, color: 'rgba(255,255,255,.4)', textTransform: 'uppercase', letterSpacing: '.06em', marginTop: 3 }}>{item.label}</div>
+                  </div>
+                </React.Fragment>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Enrollment adjuster */}
+      <div style={{ background: 'var(--white)', border: '1px solid var(--border)', borderRadius: 4, padding: '20px 24px', marginBottom: 20 }}>
+        <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: 12 }}>
+          Adjust Enrollment Status
+        </div>
+        <div style={{ display: 'flex', gap: 8 }}>
+          {enrollOpts.map(opt => (
+            <button key={opt.value} onClick={() => setEnrollment(opt.value)} style={{
+              flex: 1, padding: '10px', borderRadius: 3,
+              border: `1.5px solid ${enrollment === opt.value ? 'var(--green-deep)' : 'var(--border)'}`,
+              background: enrollment === opt.value ? 'var(--green-light)' : 'var(--white)',
+              color: enrollment === opt.value ? 'var(--green-deep)' : 'var(--muted)',
+              fontFamily: 'var(--font-body)', fontSize: 13, fontWeight: 600,
+              cursor: 'pointer', transition: 'all .2s',
+            }}>
+              <div>{opt.label}</div>
+              <div style={{ fontSize: 10, opacity: .7, marginTop: 2 }}>{opt.sub}</div>
+            </button>
+          ))}
+        </div>
+        <div style={{ marginTop: 12, fontSize: 12, color: 'var(--muted)', lineHeight: 1.6 }}>
+          Adjusting enrollment changes your aid amounts. Full-time enrollment maximizes most grant awards.
+        </div>
+      </div>
+
+      {/* Two-column breakdown */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 20 }}>
+        {/* Aid breakdown */}
+        <div style={{ background: 'var(--white)', border: '1px solid var(--border)', borderRadius: 4, padding: '24px' }}>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: 16 }}>Aid Breakdown</div>
+          <AidBar items={aidRows} />
+          <div style={{ marginTop: 20, display: 'flex', flexDirection: 'column', gap: 0 }}>
+            {aidRows.map((row, i) => (
+              <div key={i} style={{
+                display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                padding: '11px 0', borderBottom: i < aidRows.length - 1 ? '1px solid var(--border)' : 'none', gap: 12,
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <div style={{ width: 8, height: 8, borderRadius: 2, background: row.color, flexShrink: 0 }} />
+                  <div>
+                    <div style={{ fontSize: 13, fontWeight: 500, color: 'var(--ink)' }}>{row.label}</div>
+                    <div style={{ fontSize: 11, color: 'var(--muted)' }}>{row.note}</div>
+                  </div>
+                </div>
+                <div style={{
+                  fontFamily: 'var(--font-mono)', fontSize: 14, fontWeight: 700,
+                  color: row.type === 'loan' ? 'var(--muted)' : 'var(--green-deep)', whiteSpace: 'nowrap',
+                }}>{fmt(row.amount)}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Cost of attendance + net summary */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <div style={{ background: 'var(--white)', border: '1px solid var(--border)', borderRadius: 4, padding: '24px', flex: 1 }}>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: 16 }}>Cost of Attendance</div>
+            {[
+              { label: 'Tuition & Fees',             val: aid.costs.tuition  },
+              { label: 'Housing',                     val: aid.costs.housing  },
+              { label: 'Dining',                      val: aid.costs.dining   },
+              { label: 'Books & Supplies',            val: aid.costs.books    },
+              { label: 'Personal & Transportation',   val: aid.costs.personal },
+            ].filter(r => r.val > 0).map((row, i, arr) => (
+              <div key={i} style={{
+                display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                padding: '10px 0', borderBottom: i < arr.length - 1 ? '1px solid var(--border)' : 'none',
+              }}>
+                <span style={{ fontSize: 13, color: 'var(--ink)' }}>{row.label}</span>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 13, fontWeight: 600, color: 'var(--ink)' }}>{fmt(row.val)}</span>
+              </div>
+            ))}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 12, paddingTop: 12, borderTop: '2px solid var(--green-deep)' }}>
+              <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--ink)' }}>Total</span>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 16, fontWeight: 800, color: 'var(--green-deep)' }}>{fmt(totalCOA)}</span>
+            </div>
+          </div>
+
+          <div style={{ background: 'var(--gold-pale)', border: '1px solid rgba(168,146,50,.25)', borderRadius: 4, padding: '20px 24px' }}>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 12 }}>Net Cost Summary</div>
+            {[
+              { label: 'Cost of Attendance',          val: totalCOA },
+              { label: 'Total Grants & Scholarships', val: -aid.totalGrants },
+              { label: 'Work-Study (earned)',          val: -aid.workStudy },
+            ].map((row, i) => (
+              <div key={i} style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid rgba(168,146,50,.15)' }}>
+                <span style={{ fontSize: 13, color: 'var(--ink)' }}>{row.label}</span>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 13, fontWeight: 600, color: row.val < 0 ? 'var(--green-deep)' : 'var(--ink)' }}>
+                  {row.val < 0 ? `− ${fmt(Math.abs(row.val))}` : fmt(row.val)}
+                </span>
+              </div>
+            ))}
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 10, paddingTop: 10 }}>
+              <span style={{ fontSize: 14, fontWeight: 700, color: 'var(--ink)' }}>Your Out-of-Pocket Cost</span>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 18, fontWeight: 900, color: 'var(--green-deep)' }}>{fmt(aid.netCost)}</span>
+            </div>
+            <div style={{ fontSize: 11, color: 'var(--muted)', marginTop: 8, lineHeight: 1.6 }}>
+              Loans available: {fmt(aid.totalLoans)} (optional, must be repaid)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Matched scholarships */}
+      {SHOW_SCHOLARSHIPS && matchedScholarships.length > 0 && (
+        <div style={{ marginBottom: 20 }}>
+          <div style={{ marginBottom: 16 }}>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--gold)', display: 'flex', alignItems: 'center', gap: 8 }}>
+              <span style={{ display: 'block', width: 20, height: 2, background: 'var(--gold)' }} />
+              Matched Scholarships &amp; Grants
+            </div>
+            <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 26, textTransform: 'uppercase', color: 'var(--ink)', marginTop: 4 }}>
+              You may qualify for {matchedScholarships.length} awards
+            </div>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 12 }}>
+            {matchedScholarships.map((s, i) => (
+              <div key={i}
+                onMouseEnter={e => e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,.08)'}
+                onMouseLeave={e => e.currentTarget.style.boxShadow = 'none'}
+                style={{ background: 'var(--white)', border: '1px solid var(--border)', borderRadius: 4, padding: '20px', overflow: 'hidden', position: 'relative', transition: 'box-shadow .2s' }}
+              >
+                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: s.color }} />
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+                  <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', color: s.color, background: `${s.color}18`, padding: '2px 8px', borderRadius: 2 }}>{s.type}</span>
+                  {s.renewable && <span style={{ fontSize: 10, color: 'var(--muted)', background: 'var(--surface)', padding: '2px 8px', borderRadius: 2 }}>Renewable</span>}
+                </div>
+                <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 18, textTransform: 'uppercase', color: 'var(--ink)', lineHeight: 1.1, marginBottom: 4 }}>{s.name}</div>
+                <div style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: 26, color: s.color, letterSpacing: '-.02em', marginBottom: 6 }}>
+                  {fmt(s.amount)}<span style={{ fontSize: 13, fontWeight: 600, color: 'var(--muted)', marginLeft: 4 }}>/yr</span>
+                </div>
+                <div style={{ fontSize: 12, color: 'var(--muted)', marginBottom: 8 }}>{s.criteria}</div>
+                <div style={{ fontSize: 11, color: 'var(--muted)', display: 'flex', alignItems: 'center', gap: 4 }}>
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  Deadline: {s.deadline}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Disclaimer */}
+      {SHOW_DISCLAIMER && (
+        <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 4, padding: '16px 20px', fontSize: 12, color: 'var(--muted)', lineHeight: 1.7, marginBottom: 20 }}>
+          <strong style={{ color: 'var(--ink)' }}>Disclaimer:</strong> These estimates are for planning purposes only and do not constitute an official financial aid offer. Actual aid is determined after you submit a FAFSA and are admitted to UNC Charlotte. Figures are based on 2025–2026 academic year rates.
+        </div>
+      )}
+
+      {/* CTAs */}
+      <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+        <button onClick={onEdit} style={{
+          display: 'inline-flex', alignItems: 'center', gap: 8,
+          background: 'transparent', color: 'var(--green-deep)',
+          fontFamily: 'var(--font-body)', fontSize: 13, fontWeight: 600,
+          letterSpacing: '.05em', textTransform: 'uppercase',
+          padding: '12px 24px', borderRadius: 3, border: '1.5px solid var(--green-deep)', cursor: 'pointer',
+        }}>
+          Edit My Information
+        </button>
+      </div>
+    </div>
+  );
+}
+
+/* ─── MAIN APP ─── */
+function App() {
+  const [step,        setStep]        = React.useState(1);
+  const [showResults, setShowResults] = React.useState(false);
+  const [enrollment,  setEnrollment]  = React.useState(DEFAULT_ENROLLMENT);
+
+  const [residency,          setResidency]          = React.useState('instate');
+  const [householdSize,      setHouseholdSize]       = React.useState(3);
+  const [dependents,         setDependents]          = React.useState(false);
+  const [householdIncome,    setHouseholdIncome]     = React.useState(45000);
+  const [efc,                setEfc]                 = React.useState(1500);
+  const [pellSemestersUsed,  setPellSemestersUsed]   = React.useState(0);
+  const [gpa,                setGpa]                 = React.useState(3.2);
+  const [transferCredits,    setTransferCredits]     = React.useState(48);
+
+  const formData = { householdIncome, householdSize, efc, pellSemestersUsed, transferCredits, residency, gpa };
+
+  const BtnPrimary = ({ onClick, children, disabled }) => (
+    <button onClick={onClick} disabled={disabled} style={{
+      display: 'inline-flex', alignItems: 'center', gap: 8,
+      background: disabled ? 'var(--border)' : 'var(--green-deep)',
+      color: disabled ? 'var(--muted)' : '#fff',
+      fontFamily: 'var(--font-body)', fontSize: 14, fontWeight: 700,
+      letterSpacing: '.05em', textTransform: 'uppercase',
+      padding: '13px 28px', borderRadius: 3, border: 'none',
+      cursor: disabled ? 'default' : 'pointer', transition: 'background .2s',
+    }}>
+      {children}
+      {!disabled && <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg>}
+    </button>
+  );
+
+  const BtnBack = ({ onClick }) => (
+    <button onClick={onClick} style={{
+      background: 'none', border: 'none', cursor: 'pointer',
+      fontFamily: 'var(--font-body)', fontSize: 13, fontWeight: 500,
+      color: 'var(--muted)', display: 'flex', alignItems: 'center', gap: 6,
+    }}>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M19 12H5M11 6l-6 6 6 6"/></svg>
+      Back
+    </button>
+  );
+
+  return (
+    <div style={{ paddingTop: 64, minHeight: '100vh', background: 'var(--surface)' }}>
+
+      {/* Page header */}
+      <div style={{ background: 'var(--green-deep)', padding: '40px 72px 36px', position: 'relative', overflow: 'hidden' }}>
+        <div style={{
+          position: 'absolute', right: -20, bottom: -30,
+          fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: 240,
+          color: 'transparent', WebkitTextStroke: '1px rgba(200,162,39,.07)',
+          lineHeight: 1, pointerEvents: 'none', userSelect: 'none',
+        }}>AID</div>
+        <div style={{ position: 'relative', zIndex: 2 }}>
+          <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--gold-bright)', marginBottom: 12, display: 'flex', alignItems: 'center', gap: 10 }}>
+            <span style={{ display: 'block', width: 28, height: 2, background: 'var(--gold)' }} />
+            Financial Aid Office
+          </div>
+          <h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: 'clamp(40px,4.5vw,60px)', textTransform: 'uppercase', lineHeight: .93, letterSpacing: '-.01em', color: '#fff', marginBottom: 10 }}>
+            Personal Aid <span style={{ color: 'var(--gold-bright)' }}>Estimator</span>
+          </h1>
+          <p style={{ fontSize: 15, color: 'rgba(255,255,255,.6)', maxWidth: 480, lineHeight: 1.7, fontWeight: 300 }}>
+            Answer a few questions to get a personalized breakdown of your likely financial aid package and estimated out-of-pocket cost.
+          </p>
+        </div>
+      </div>
+
+      {/* Main content */}
+      <div style={{ maxWidth: 860, margin: '0 auto', padding: '40px 40px 80px' }}>
+
+        {!showResults ? (
+          <div style={{ background: 'var(--white)', border: '1px solid var(--border)', borderRadius: 4, overflow: 'hidden' }}>
+            <div style={{ padding: '28px 40px 24px', borderBottom: '1px solid var(--border)' }}>
+              <StepBar step={step} />
+            </div>
+
+            <div style={{ padding: '36px 40px' }}>
+
+              {/* STEP 1 — About You */}
+              {step === 1 && (
+                <div>
+                  <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 28, textTransform: 'uppercase', color: 'var(--ink)', marginBottom: 4 }}>About You</div>
+                  <div style={{ fontSize: 14, color: 'var(--muted)', marginBottom: 32 }}>Basic information about your situation as an incoming transfer student.</div>
+
+                  <RadioGroup
+                    label="State Residency"
+                    hint="In-state students pay significantly lower tuition and may qualify for additional state grants."
+                    options={[
+                      { value: 'instate',  label: 'NC Resident',  sub: 'In-state tuition' },
+                      { value: 'outstate', label: 'Out-of-State', sub: 'Higher tuition rate' },
+                    ]}
+                    value={residency} onChange={setResidency}
+                  />
+
+                  <SliderField
+                    label="Household Size"
+                    hint="Number of people in your household, including yourself. Larger households may qualify for more aid."
+                    value={householdSize} min={1} max={10}
+                    format={v => `${v} ${v === 1 ? 'person' : 'people'}`}
+                    onChange={setHouseholdSize}
+                  />
+
+                  <RadioGroup
+                    label="Dependency Status"
+                    hint="Most traditional transfer students are considered dependent on their parents for financial aid purposes."
+                    options={[
+                      { value: false, label: 'Dependent',   sub: 'Parent income considered' },
+                      { value: true,  label: 'Independent', sub: 'Your income only' },
+                    ]}
+                    value={dependents} onChange={setDependents}
+                  />
+
+                  <SliderField
+                    label="Transfer Credits"
+                    hint="Number of credit hours you expect to transfer to UNC Charlotte."
+                    value={transferCredits} min={12} max={90}
+                    format={v => `${v} credits`}
+                    onChange={setTransferCredits}
+                  />
+
+                  <div style={{ display: 'flex', justifyContent: 'flex-end', paddingTop: 8 }}>
+                    <BtnPrimary onClick={() => setStep(2)}>Continue</BtnPrimary>
+                  </div>
+                </div>
+              )}
+
+              {/* STEP 2 — Finances */}
+              {step === 2 && (
+                <div>
+                  <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 28, textTransform: 'uppercase', color: 'var(--ink)', marginBottom: 4 }}>Your Finances</div>
+                  <div style={{ fontSize: 14, color: 'var(--muted)', marginBottom: 32 }}>This information helps estimate your need-based aid eligibility.</div>
+
+                  <SliderField
+                    label={dependents ? 'Your Annual Income' : 'Household Annual Income'}
+                    hint="Combined gross income before taxes. This is the primary factor in determining need-based aid."
+                    value={householdIncome} min={0} max={150000} step={1000}
+                    format={v => fmt(v)} onChange={setHouseholdIncome} accent
+                  />
+
+                  <SliderField
+                    label="Expected Family Contribution (EFC)"
+                    hint="Your EFC is calculated from your FAFSA. If you haven't filed yet, estimate based on your income. $0 = maximum need."
+                    value={efc} min={0} max={20000} step={100}
+                    format={v => fmt(v)} onChange={setEfc}
+                  />
+
+                  <SliderField
+                    label="Pell Grant Semesters Used"
+                    hint="You have a lifetime limit of 12 full-time semesters (6 years) of Pell Grant eligibility."
+                    value={pellSemestersUsed} min={0} max={12}
+                    format={v => `${v} semester${v !== 1 ? 's' : ''}`}
+                    onChange={setPellSemestersUsed}
+                  />
+
+                  <div style={{ background: 'var(--green-light)', borderRadius: 3, padding: '14px 16px', marginBottom: 24, fontSize: 13, color: 'var(--green-deep)', lineHeight: 1.6 }}>
+                    <strong>Don't know your EFC?</strong> Your EFC appears on your Student Aid Report (SAR) after filing FAFSA. A rough estimate: EFC ≈ 22% of parent income above $25,000 for most families.
+                  </div>
+
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: 8 }}>
+                    <BtnBack onClick={() => setStep(1)} />
+                    <BtnPrimary onClick={() => setStep(3)}>Continue</BtnPrimary>
+                  </div>
+                </div>
+              )}
+
+              {/* STEP 3 — Goals */}
+              {step === 3 && (
+                <div>
+                  <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 28, textTransform: 'uppercase', color: 'var(--ink)', marginBottom: 4 }}>Your Goals</div>
+                  <div style={{ fontSize: 14, color: 'var(--muted)', marginBottom: 32 }}>A few details that affect scholarship eligibility and your aid package.</div>
+
+                  <SliderField
+                    label="Cumulative GPA"
+                    hint="Your current college GPA. Higher GPA may qualify you for merit scholarships."
+                    value={gpa} min={2.0} max={4.0} step={0.05}
+                    format={v => v.toFixed(2)} onChange={setGpa}
+                  />
+
+                  <div style={{ background: 'var(--gold-pale)', border: '1px solid rgba(168,146,50,.25)', borderRadius: 3, padding: '14px 16px', marginBottom: 24 }}>
+                    <div style={{ fontSize: 12, color: 'var(--gold)', fontWeight: 700, marginBottom: 4 }}>Merit Award Preview</div>
+                    <div style={{ fontSize: 14, color: 'var(--ink)' }}>
+                      {gpa >= 3.5
+                        ? <span>GPA ≥ 3.5 → <strong>Transfer Excellence Award: up to $5,000/yr</strong></span>
+                        : gpa >= 3.0
+                        ? <span>GPA 3.0–3.49 → <strong>Niner Transfer Merit Award: up to $3,500/yr</strong></span>
+                        : gpa >= 2.5
+                        ? <span>GPA 2.5–2.99 → <strong>Transfer Achievement Scholarship: $2,000</strong></span>
+                        : <span style={{ color: 'var(--muted)' }}>GPA below 2.5 — no automatic merit award. Need-based grants may still apply.</span>
+                      }
+                    </div>
+                  </div>
+
+                  <RadioGroup
+                    label="Intended Enrollment"
+                    hint="Full-time students receive the highest aid packages. Aid is prorated for part-time enrollment."
+                    options={[
+                      { value: 'full',  label: 'Full-Time',      sub: '12+ credits/sem' },
+                      { value: 'three', label: 'Three-Quarter',   sub: '9–11 credits/sem' },
+                      { value: 'half',  label: 'Half-Time',       sub: '6–8 credits/sem' },
+                    ]}
+                    value={enrollment} onChange={setEnrollment}
+                  />
+
+                  {/* Quick preview */}
+                  <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 3, padding: '16px 20px', marginBottom: 24 }}>
+                    <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: 12 }}>Quick Preview</div>
+                    {(() => {
+                      const preview = calcAid({ ...formData, enrollment });
+                      return (
+                        <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
+                          {[
+                            { label: 'Est. Grants & Aid', val: fmt(preview.totalGrants), color: 'var(--green-deep)' },
+                            { label: 'Est. Net Cost',      val: fmt(preview.netCost),     color: 'var(--ink)'       },
+                            { label: 'Optional Loans',     val: fmt(preview.totalLoans),  color: 'var(--muted)'     },
+                          ].map(item => (
+                            <div key={item.label}>
+                              <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 24, color: item.color, lineHeight: 1 }}>{item.val}</div>
+                              <div style={{ fontSize: 11, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '.06em', marginTop: 2 }}>{item.label}</div>
+                            </div>
+                          ))}
+                        </div>
+                      );
+                    })()}
+                  </div>
+
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: 8 }}>
+                    <BtnBack onClick={() => setStep(2)} />
+                    <button
+                      onClick={() => setShowResults(true)}
+                      style={{
+                        display: 'inline-flex', alignItems: 'center', gap: 10,
+                        background: 'var(--gold)', color: 'var(--green-deep)',
+                        fontFamily: 'var(--font-body)', fontSize: 14, fontWeight: 700,
+                        letterSpacing: '.05em', textTransform: 'uppercase',
+                        padding: '14px 32px', borderRadius: 3, border: 'none',
+                        cursor: 'pointer', transition: 'background .2s',
+                      }}
+                    >
+                      Calculate My Aid
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg>
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        ) : (
+          <Results
+            data={formData}
+            enrollment={enrollment}
+            setEnrollment={setEnrollment}
+            gpa={gpa}
+            onEdit={() => setShowResults(false)}
+          />
+        )}
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

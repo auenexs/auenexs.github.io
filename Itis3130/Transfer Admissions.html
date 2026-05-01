@@ -1,0 +1,1280 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transfer to UNC Charlotte — Undergraduate Admissions</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --green-deep: #005035;
+        --green-mid: #00693e;
+        --green-light: #e8f0ec;
+        --gold: #a89232;
+        --gold-bright: #c9a227;
+        --gold-pale: #f5efc7;
+        --black: #0f0f0e;
+        --ink: #1a1a18;
+        --muted: #5a5a55;
+        --border: #ddd9d0;
+        --white: #fdfcf8;
+        --font-display: "Barlow Condensed", sans-serif;
+        --font-body: "DM Sans", sans-serif;
+        --font-serif: "Lora", serif;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font-body);
+        background: var(--white);
+        color: var(--ink);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* ─── SCROLL REVEAL ─── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.65s ease,
+          transform 0.65s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .reveal-delay-3 {
+        transition-delay: 0.3s;
+      }
+      .reveal-delay-4 {
+        transition-delay: 0.45s;
+      }
+
+      /* ─── NAV ─── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: var(--green-deep);
+        border-bottom: 2px solid var(--gold);
+        padding: 0 48px;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+      }
+      .nav-logo-mark {
+        width: 36px;
+        height: 36px;
+        background: var(--gold);
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-display);
+        font-weight: 900;
+        font-size: 18px;
+        color: var(--green-deep);
+        letter-spacing: -0.5px;
+      }
+      .nav-logo-text {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 15px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #fff;
+        line-height: 1.2;
+      }
+      .nav-logo-text span {
+        color: var(--gold-bright);
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        list-style: none;
+      }
+      .nav-links a {
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.75);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--gold-bright);
+      }
+      .nav-cta {
+        background: var(--gold);
+        color: var(--green-deep) !important;
+        padding: 8px 20px;
+        border-radius: 3px;
+        font-weight: 700 !important;
+        transition: background 0.2s !important;
+      }
+      .nav-cta:hover {
+        background: var(--gold-bright) !important;
+        color: var(--green-deep) !important;
+      }
+
+      /* ─── HERO ─── */
+      .hero {
+        min-height: 100vh;
+        background: var(--green-deep);
+        position: relative;
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding-top: 64px;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 79px,
+          rgba(255, 255, 255, 0.025) 79px,
+          rgba(255, 255, 255, 0.025) 80px
+        );
+        pointer-events: none;
+      }
+      .hero-deco {
+        position: absolute;
+        right: -20px;
+        bottom: -60px;
+        font-family: var(--font-display);
+        font-weight: 900;
+        font-size: 420px;
+        line-height: 1;
+        color: transparent;
+        -webkit-text-stroke: 1.5px rgba(168, 146, 50, 0.18);
+        pointer-events: none;
+        user-select: none;
+        letter-spacing: -0.03em;
+      }
+      .hero-left {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 80px 64px 80px 72px;
+        position: relative;
+        z-index: 2;
+      }
+      .hero-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--gold-bright);
+        margin-bottom: 24px;
+      }
+      .hero-eyebrow::before {
+        content: "";
+        display: block;
+        width: 32px;
+        height: 2px;
+        background: var(--gold);
+      }
+      .hero-headline {
+        font-family: var(--font-display);
+        font-weight: 900;
+        font-size: clamp(56px, 5.5vw, 84px);
+        line-height: 0.95;
+        letter-spacing: -0.01em;
+        text-transform: uppercase;
+        color: #fff;
+        margin-bottom: 28px;
+      }
+      .hero-headline em {
+        font-style: normal;
+        color: var(--gold-bright);
+        display: block;
+      }
+      .hero-sub {
+        font-size: 17px;
+        color: rgba(255, 255, 255, 0.72);
+        max-width: 400px;
+        line-height: 1.7;
+        margin-bottom: 48px;
+        font-weight: 300;
+      }
+      .hero-actions {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--gold);
+        color: var(--green-deep);
+        font-family: var(--font-body);
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding: 16px 32px;
+        border-radius: 3px;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+      }
+      .btn-primary:hover {
+        background: var(--gold-bright);
+        transform: translateY(-1px);
+      }
+      .btn-primary svg {
+        flex-shrink: 0;
+      }
+      .btn-ghost {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: transparent;
+        color: rgba(255, 255, 255, 0.85);
+        font-family: var(--font-body);
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        padding: 16px 24px;
+        border-radius: 3px;
+        text-decoration: none;
+        border: 1.5px solid rgba(255, 255, 255, 0.25);
+        cursor: pointer;
+        transition:
+          border-color 0.2s,
+          color 0.2s,
+          transform 0.15s;
+      }
+      .btn-ghost:hover {
+        border-color: rgba(255, 255, 255, 0.6);
+        color: #fff;
+        transform: translateY(-1px);
+      }
+      .hero-stats {
+        margin-top: 64px;
+        display: flex;
+        gap: 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 40px;
+      }
+      .hero-stat {
+        flex: 1;
+        padding-right: 32px;
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+        margin-right: 32px;
+      }
+      .hero-stat:last-child {
+        border-right: none;
+        margin-right: 0;
+      }
+      .hero-stat-num {
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: 38px;
+        color: var(--gold-bright);
+        letter-spacing: -0.02em;
+        line-height: 1;
+        margin-bottom: 4px;
+      }
+      .hero-stat-label {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.5);
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .hero-right {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding: 80px 48px 0;
+        overflow: hidden;
+      }
+      .hero-image-placeholder {
+        width: 100%;
+        max-width: 520px;
+        aspect-ratio: 3/4;
+        background: linear-gradient(
+          160deg,
+          rgba(255, 255, 255, 0.06) 0%,
+          rgba(255, 255, 255, 0.01) 100%
+        );
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: none;
+        border-radius: 8px 8px 0 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+      }
+      .hero-image-placeholder svg {
+        opacity: 0.2;
+      }
+      .hero-image-placeholder p {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.3);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-family: monospace;
+        text-align: center;
+      }
+
+      /* ─── MARQUEE BAND ─── */
+      .marquee-band {
+        background: var(--gold);
+        padding: 13px 0;
+        overflow: hidden;
+      }
+      .marquee-track {
+        display: flex;
+        gap: 0;
+        animation: marquee 22s linear infinite;
+        white-space: nowrap;
+      }
+      .marquee-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 24px;
+        padding: 0 40px;
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 13px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--green-deep);
+      }
+      .marquee-dot {
+        width: 5px;
+        height: 5px;
+        background: var(--green-deep);
+        border-radius: 50%;
+        opacity: 0.5;
+        flex-shrink: 0;
+      }
+      @keyframes marquee {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* ─── SECTION COMMON ─── */
+      .section-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 20px;
+      }
+      .section-eyebrow::before {
+        content: "";
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--gold);
+      }
+
+      /* ─── PROCESS SECTION ─── */
+      .process-section {
+        padding: 120px 72px;
+        background: var(--white);
+      }
+      .process-header {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        align-items: end;
+        margin-bottom: 80px;
+      }
+      .process-title {
+        font-family: var(--font-display);
+        font-weight: 900;
+        font-size: clamp(44px, 4.5vw, 68px);
+        text-transform: uppercase;
+        letter-spacing: -0.01em;
+        line-height: 0.95;
+        color: var(--ink);
+      }
+      .process-title em {
+        font-style: normal;
+        color: var(--green-deep);
+      }
+      .process-desc {
+        font-size: 16px;
+        color: var(--muted);
+        line-height: 1.75;
+        max-width: 380px;
+      }
+      .process-steps {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: var(--border);
+        border: 1px solid var(--border);
+      }
+      .process-step {
+        background: var(--white);
+        padding: 56px 48px;
+        position: relative;
+        overflow: hidden;
+        transition: background 0.3s;
+        cursor: default;
+      }
+      .process-step:hover {
+        background: var(--green-light);
+      }
+      .process-step:hover .step-num {
+        color: rgba(0, 80, 53, 0.08);
+      }
+      .step-num {
+        position: absolute;
+        top: -10px;
+        right: 24px;
+        font-family: var(--font-display);
+        font-weight: 900;
+        font-size: 120px;
+        line-height: 1;
+        color: rgba(0, 0, 0, 0.04);
+        user-select: none;
+        transition: color 0.3s;
+        letter-spacing: -0.03em;
+      }
+      .step-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background: var(--green-deep);
+        border-radius: 2px;
+        margin-bottom: 24px;
+      }
+      .step-badge svg {
+        color: var(--gold-bright);
+      }
+      .step-label {
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: 32px;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: var(--ink);
+        margin-bottom: 4px;
+      }
+      .step-tagline {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 20px;
+      }
+      .step-body {
+        font-size: 15px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      .step-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 28px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--green-deep);
+        text-decoration: none;
+        letter-spacing: 0.03em;
+        border-bottom: 1.5px solid var(--green-deep);
+        padding-bottom: 2px;
+        transition: gap 0.2s;
+      }
+      .step-link:hover {
+        gap: 10px;
+      }
+
+      /* ─── TESTIMONIAL ─── */
+      .testimonial-section {
+        background: var(--green-deep);
+        padding: 100px 72px;
+        position: relative;
+        overflow: hidden;
+      }
+      .testimonial-section::before {
+        content: "\201C";
+        position: absolute;
+        top: -60px;
+        left: 48px;
+        font-family: var(--font-serif);
+        font-size: 400px;
+        color: rgba(200, 162, 39, 0.07);
+        line-height: 1;
+        pointer-events: none;
+        user-select: none;
+      }
+      .testimonial-inner {
+        max-width: 900px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+      }
+      .testimonial-quote {
+        font-family: var(--font-serif);
+        font-size: clamp(22px, 2.5vw, 34px);
+        color: #fff;
+        line-height: 1.55;
+        margin-bottom: 40px;
+        font-weight: 400;
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease;
+      }
+      .testimonial-quote strong {
+        font-style: italic;
+        font-weight: 400;
+        color: var(--gold-bright);
+      }
+      .testimonial-attribution {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        transition: opacity 0.5s ease;
+      }
+      .testimonial-avatar {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px solid var(--gold);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .testimonial-avatar-initials {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 18px;
+        color: var(--gold-bright);
+      }
+      .testimonial-name {
+        font-size: 15px;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 2px;
+      }
+      .testimonial-detail {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.5);
+        letter-spacing: 0.02em;
+      }
+      .testimonial-dots {
+        display: flex;
+        gap: 8px;
+        margin-top: 48px;
+      }
+      .tdot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+        border: none;
+        padding: 0;
+      }
+      .tdot.active {
+        background: var(--gold);
+        transform: scale(1.2);
+      }
+
+      /* ─── CTA SECTION ─── */
+      .cta-section {
+        padding: 120px 72px;
+        background: var(--white);
+      }
+      .cta-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2px;
+        background: var(--border);
+        border: 1px solid var(--border);
+      }
+      .cta-card {
+        padding: 72px 64px;
+        text-decoration: none;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s;
+        cursor: pointer;
+      }
+      .cta-card-primary {
+        background: var(--green-deep);
+      }
+      .cta-card-secondary {
+        background: var(--gold-pale);
+      }
+      .cta-card:hover {
+        transform: scale(1.005);
+      }
+      .cta-card::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--gold);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.35s ease;
+      }
+      .cta-card:hover::after {
+        transform: scaleX(1);
+      }
+      .cta-label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+      }
+      .cta-card-primary .cta-label {
+        color: rgba(255, 255, 255, 0.5);
+      }
+      .cta-card-secondary .cta-label {
+        color: var(--gold);
+      }
+      .cta-heading {
+        font-family: var(--font-display);
+        font-weight: 900;
+        font-size: clamp(36px, 3.5vw, 52px);
+        text-transform: uppercase;
+        line-height: 0.95;
+        letter-spacing: -0.01em;
+        margin-bottom: 20px;
+      }
+      .cta-card-primary .cta-heading {
+        color: #fff;
+      }
+      .cta-card-secondary .cta-heading {
+        color: var(--green-deep);
+      }
+      .cta-body {
+        font-size: 15px;
+        line-height: 1.7;
+        margin-bottom: 40px;
+        max-width: 360px;
+      }
+      .cta-card-primary .cta-body {
+        color: rgba(255, 255, 255, 0.65);
+      }
+      .cta-card-secondary .cta-body {
+        color: var(--muted);
+      }
+      .cta-arrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        border-bottom: 2px solid currentColor;
+        padding-bottom: 4px;
+        transition: gap 0.2s;
+      }
+      .cta-card-primary .cta-arrow {
+        color: var(--gold-bright);
+      }
+      .cta-card-secondary .cta-arrow {
+        color: var(--green-deep);
+      }
+      .cta-card:hover .cta-arrow {
+        gap: 16px;
+      }
+      .cta-deco-num {
+        position: absolute;
+        bottom: -20px;
+        right: 24px;
+        font-family: var(--font-display);
+        font-weight: 900;
+        font-size: 180px;
+        line-height: 1;
+        pointer-events: none;
+        user-select: none;
+      }
+      .cta-card-primary .cta-deco-num {
+        color: rgba(255, 255, 255, 0.04);
+      }
+      .cta-card-secondary .cta-deco-num {
+        color: rgba(0, 80, 53, 0.06);
+      }
+
+      /* ─── FOOTER ─── */
+      footer {
+        background: var(--ink);
+        padding: 56px 72px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 32px;
+      }
+      .footer-logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .footer-logo-mark {
+        width: 32px;
+        height: 32px;
+        background: var(--gold);
+        border-radius: 3px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-display);
+        font-weight: 900;
+        font-size: 16px;
+        color: var(--green-deep);
+      }
+      .footer-logo-text {
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 13px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 1.3;
+      }
+      .footer-links {
+        display: flex;
+        gap: 32px;
+        list-style: none;
+      }
+      .footer-links a {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.35);
+        text-decoration: none;
+        letter-spacing: 0.04em;
+        transition: color 0.2s;
+      }
+      .footer-links a:hover {
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .footer-legal {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.2);
+        letter-spacing: 0.02em;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ─── NAV ─── -->
+    <nav>
+      <a class="nav-logo" href="#">
+        <div class="nav-logo-mark">49</div>
+        <div class="nav-logo-text">
+          UNC Charlotte<br /><span>Undergraduate Admissions</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#process">How It Works</a></li>
+        <li><a href="#testimonial">Stories</a></li>
+        <li><a href="Credit Transfer Checker.html">Credit Checker</a></li>
+        <li><a href="Aid Estimator.html">Aid Estimator</a></li>
+        <li><a href="#apply" class="nav-cta">Start Application</a></li>
+      </ul>
+    </nav>
+
+    <!-- ─── HERO ─── -->
+    <section class="hero" id="hero">
+      <div class="hero-deco" aria-hidden="true">49</div>
+
+      <div class="hero-left">
+        <div class="hero-eyebrow reveal">Transfer Admissions — Fall 2026</div>
+
+        <h1 class="hero-headline reveal reveal-delay-1">
+          Your next<br />chapter<br />
+          <em>starts here.</em>
+        </h1>
+
+        <p class="hero-sub reveal reveal-delay-2">
+          Community college is an incredible foundation. Now it's time to take
+          the leap! UNC Charlotte welcomes transfer students with open arms,
+          streamlined credit transfer, and a campus built for your success.
+        </p>
+
+        <div class="hero-actions reveal reveal-delay-3">
+          <a href="#apply" class="btn-primary">
+            <svg
+              width="16"
+              height="16"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2.5"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 4v16m8-8H4"
+              />
+            </svg>
+            Begin Your Application
+          </a>
+          <a href="#process" class="btn-ghost">
+            See How It Works
+            <svg
+              width="14"
+              height="14"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </a>
+        </div>
+
+        <div class="hero-stats reveal reveal-delay-4">
+          <div class="hero-stat">
+            <div class="hero-stat-num">2,400+</div>
+            <div class="hero-stat-label">Transfers enrolled annually</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">90%</div>
+            <div class="hero-stat-label">Credit hour acceptance rate</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">200+</div>
+            <div class="hero-stat-label">Degree programs available</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right reveal reveal-delay-2">
+        <div class="hero-image-placeholder">
+          <svg
+            width="64"
+            height="64"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="white"
+            stroke-width="1"
+            aria-hidden="true"
+          >
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          <p>Student campus photography<br />portrait — tall format</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── MARQUEE ─── -->
+    <div class="marquee-band" aria-hidden="true">
+      <div class="marquee-track" id="marquee-track"></div>
+    </div>
+
+    <!-- ─── PROCESS ─── -->
+    <section class="process-section" id="process">
+      <div class="process-header">
+        <div>
+          <div class="section-eyebrow reveal">The Transfer Pathway</div>
+          <h2 class="process-title reveal reveal-delay-1">
+            Three steps.<br /><em>One clear path.</em>
+          </h2>
+        </div>
+        <p class="process-desc reveal reveal-delay-2">
+          We've made the process as straightforward as possible. From checking
+          your eligibility to submitting your application, every step is
+          designed to get you where you're going faster.
+        </p>
+      </div>
+
+      <div class="process-steps">
+        <div class="process-step reveal">
+          <span class="step-num" aria-hidden="true">01</span>
+          <div class="step-badge">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              color="#c9a227"
+              aria-hidden="true"
+            >
+              <path
+                d="M9 20l-5.447-2.724A1 1 0 0 1 3 16.382V5.618a1 1 0 0 1 1.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0 0 21 18.382V7.618a1 1 0 0 0-.553-.894L15 4m0 13V4m0 0L9 7"
+              />
+            </svg>
+          </div>
+          <div class="step-label">Explore</div>
+          <div class="step-tagline">Find your fit</div>
+          <p class="step-body">
+            Browse over 200 undergraduate programs and use our Transfer
+            Equivalency System to see exactly how your community college credits
+            will count toward your Charlotte degree.
+          </p>
+        </div>
+
+        <div class="process-step reveal reveal-delay-1">
+          <span class="step-num" aria-hidden="true">02</span>
+          <div class="step-badge">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              color="#c9a227"
+              aria-hidden="true"
+            >
+              <path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" />
+            </svg>
+          </div>
+          <div class="step-label">Confirm</div>
+          <div class="step-tagline">Meet the requirements</div>
+          <p class="step-body">
+            Verify your eligibility: a minimum 2.0 GPA, good academic standing
+            at your current institution, and completion of any program-specific
+            prerequisite courses.
+          </p>
+        </div>
+
+        <div class="process-step reveal reveal-delay-2">
+          <span class="step-num" aria-hidden="true">03</span>
+          <div class="step-badge">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              color="#c9a227"
+              aria-hidden="true"
+            >
+              <path d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+            </svg>
+          </div>
+          <div class="step-label">Apply</div>
+          <div class="step-tagline">Submit &amp; celebrate</div>
+          <p class="step-body">
+            Complete your application through the UNC System portal. Submit
+            official transcripts, and you may be eligible for Priority Admission
+            if you meet our transfer agreement criteria.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── TESTIMONIAL ─── -->
+    <section class="testimonial-section" id="testimonial">
+      <div class="testimonial-inner">
+        <blockquote
+          class="testimonial-quote reveal"
+          id="testimonial-quote"
+        ></blockquote>
+        <div
+          class="testimonial-attribution reveal reveal-delay-1"
+          id="testimonial-attribution"
+        ></div>
+        <div
+          class="testimonial-dots reveal reveal-delay-2"
+          id="testimonial-dots"
+        ></div>
+      </div>
+    </section>
+
+    <!-- ─── CTA ─── -->
+    <section class="cta-section" id="apply">
+      <div class="cta-grid">
+        <div
+          class="cta-card cta-card-primary reveal"
+          role="button"
+          tabindex="0"
+        >
+          <span class="cta-deco-num" aria-hidden="true">→</span>
+          <div class="cta-label">Ready to transfer?</div>
+          <h3 class="cta-heading">Apply for<br />Fall 2026</h3>
+          <p class="cta-body">
+            The application for Fall 2026 is open. Priority consideration
+            deadline is <strong>March 1</strong>. apply early for the best
+            scholarship opportunities.
+          </p>
+          <span class="cta-arrow">
+            Start Your Application
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M5 12h14m-6-6l6 6-6 6"
+              />
+            </svg>
+          </span>
+        </div>
+
+        <div
+          class="cta-card cta-card-secondary reveal reveal-delay-1"
+          role="button"
+          tabindex="0"
+        >
+          <span class="cta-deco-num" aria-hidden="true">?</span>
+          <div class="cta-label">Have questions?</div>
+          <h3 class="cta-heading">Talk to a<br />Counselor</h3>
+          <p class="cta-body">
+            Our transfer admissions team is here for you. Schedule a one-on-one
+            advising session or attend a virtual transfer information session on
+            your schedule.
+          </p>
+          <span class="cta-arrow">
+            Connect With Us
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M5 12h14m-6-6l6 6-6 6"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── FOOTER ─── -->
+    <footer>
+      <div class="footer-logo">
+        <div class="footer-logo-mark">49</div>
+        <div class="footer-logo-text">
+          UNC Charlotte<br />Office of Undergraduate Admissions
+        </div>
+      </div>
+      <div class="footer-legal">
+        © 2026 University of North Carolina at Charlotte
+      </div>
+    </footer>
+
+    <script>
+      // ── Testimonials ──────────────────────────────────────────────────────────
+      const TESTIMONIALS = [
+        {
+          quote:
+            "Coming from <strong>Central Piedmont Community College</strong>, I was nervous about starting over. But Charlotte recognized all 62 of my credits. I walked in as a junior and graduated in two years!",
+          name: "Amara Johnson",
+          detail: "Transferred from CPCC · B.S. Computer Science, '25",
+          initials: "AJ",
+        },
+        {
+          quote:
+            "The Transfer Equivalency System was a <strong>game-changer</strong>. I could see exactly which classes would count before I even applied. No surprises, no wasted time, just a clear path forward.",
+          name: "Marcus Rivera",
+          detail:
+            "Transferred from Gaston College · B.S. Business Administration, '24",
+          initials: "MR",
+        },
+        {
+          quote:
+            "I worked full-time while finishing my associate degree. UNC Charlotte's transfer advisors helped me build a <strong>schedule that worked for my life</strong>, not the other way around.",
+          name: "Priya Nair",
+          detail: "Transferred from Rowan-Cabarrus CC · B.A. Psychology, '25",
+          initials: "PN",
+        },
+      ];
+
+      let activeIndex = 0;
+      let testimonialTimer = null;
+
+      function renderTestimonial(index, animate) {
+        const t = TESTIMONIALS[index];
+        const quoteEl = document.getElementById("testimonial-quote");
+        const attrEl = document.getElementById("testimonial-attribution");
+        const dotsEl = document.getElementById("testimonial-dots");
+
+        if (animate) {
+          quoteEl.style.opacity = "0";
+          quoteEl.style.transform = "translateY(12px)";
+          attrEl.style.opacity = "0";
+        }
+
+        const paint = () => {
+          quoteEl.innerHTML = t.quote;
+          attrEl.innerHTML = `
+        <div class="testimonial-avatar">
+          <span class="testimonial-avatar-initials">${t.initials}</span>
+        </div>
+        <div>
+          <div class="testimonial-name">${t.name}</div>
+          <div class="testimonial-detail">${t.detail}</div>
+        </div>
+      `;
+          dotsEl.innerHTML = TESTIMONIALS.map(
+            (_, i) =>
+              `<button class="tdot${i === index ? " active" : ""}" aria-label="Testimonial ${i + 1}"></button>`,
+          ).join("");
+          dotsEl.querySelectorAll(".tdot").forEach((btn, i) => {
+            btn.addEventListener("click", () => goTo(i));
+          });
+          if (animate) {
+            requestAnimationFrame(() => {
+              quoteEl.style.opacity = "1";
+              quoteEl.style.transform = "translateY(0)";
+              attrEl.style.opacity = "1";
+            });
+          }
+        };
+
+        animate ? setTimeout(paint, 250) : paint();
+      }
+
+      function goTo(index) {
+        clearInterval(testimonialTimer);
+        activeIndex = index;
+        renderTestimonial(activeIndex, true);
+        testimonialTimer = setInterval(advance, 5500);
+      }
+
+      function advance() {
+        activeIndex = (activeIndex + 1) % TESTIMONIALS.length;
+        renderTestimonial(activeIndex, true);
+      }
+
+      renderTestimonial(0, false);
+      testimonialTimer = setInterval(advance, 5500);
+
+      // ── Marquee ───────────────────────────────────────────────────────────────
+      const MARQUEE_ITEMS = [
+        "Transfer Friendly",
+        "200+ Programs",
+        "Priority Admission",
+        "Credit Transfer Guaranteed",
+        "Fall 2026 Apps Open",
+        "Join 2,400+ Transfer Students",
+        "Niner Nation",
+        "Merit Scholarships Available",
+        "Virtual Info Sessions",
+      ];
+
+      (function buildMarquee() {
+        const track = document.getElementById("marquee-track");
+        const doubled = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS];
+        track.innerHTML = doubled
+          .map(
+            (item) =>
+              `<span class="marquee-item"><span class="marquee-dot"></span>${item}</span>`,
+          )
+          .join("");
+      })();
+
+      // ── Scroll Reveal ─────────────────────────────────────────────────────────
+      (function initReveal() {
+        const els = document.querySelectorAll(".reveal");
+
+        els.forEach((el) => {
+          if (el.closest(".hero")) {
+            setTimeout(() => el.classList.add("visible"), 100);
+          }
+        });
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
+        );
+
+        els.forEach((el) => {
+          if (!el.closest(".hero")) observer.observe(el);
+        });
+      })();
+    </script>
+  </body>
+</html>
