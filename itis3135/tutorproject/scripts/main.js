@@ -11,7 +11,35 @@
 "use strict";
 
 /* ==========================================================================
-   1. MOBILE NAVIGATION TOGGLE
+   1. ACTIVE NAVIGATION DETECTION
+   ========================================================================== */
+
+/**
+ * Detects the current page and applies the 'active' class to the matching nav link.
+ * This runs after components are loaded via HTMLInclude.
+ */
+function initActiveNav() {
+    // Get current page filename from URL path
+    const path = window.location.pathname;
+    let currentPage = path.split('/').pop();
+
+    // Handle root/directory access (no filename = index.html)
+    if (!currentPage || currentPage === '') {
+        currentPage = 'index.html';
+    }
+
+    // Find all nav links and apply active class to matching one
+    const navLinks = document.querySelectorAll('header nav a');
+    navLinks.forEach(function(link) {
+        const linkPage = link.getAttribute('href');
+        if (linkPage === currentPage) {
+            link.classList.add('active');
+        }
+    });
+}
+
+/* ==========================================================================
+   2. MOBILE NAVIGATION TOGGLE
    ========================================================================== */
 
 /**
@@ -343,10 +371,35 @@ function initPricingCalculator() {
    ========================================================================== */
 
 /**
+ * Waits for HTMLInclude to load components, then initializes nav features.
+ * Uses MutationObserver to detect when header is added to the DOM.
+ */
+function initAfterComponentsLoad() {
+    const observer = new MutationObserver(function(mutations, obs) {
+        const header = document.querySelector('header nav');
+        if (header) {
+            obs.disconnect(); // Stop observing once header is found
+            initActiveNav();
+            initMobileNav();
+        }
+    });
+
+    // Start observing for added nodes
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    // Fallback: if header already exists (no HTMLInclude), init immediately
+    if (document.querySelector('header nav')) {
+        observer.disconnect();
+        initActiveNav();
+        initMobileNav();
+    }
+}
+
+/**
  * Initializes all interactive features when DOM is ready.
  */
 document.addEventListener('DOMContentLoaded', function() {
-    initMobileNav();
+    initAfterComponentsLoad();
     initContactForm();
     initPricingCalculator();
 });

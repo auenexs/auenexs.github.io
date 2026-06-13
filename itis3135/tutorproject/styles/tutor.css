@@ -719,6 +719,13 @@ footer ul li a:hover { color: var(--accent); }
 
 .footer-validators { display: flex; gap: 1rem; }
 
+.designer-credit {
+  width: 100%;
+  text-align: center;
+  margin-top: 0.75rem;
+  font-style: italic;
+}
+
 /* ── MOBILE NAVIGATION TOGGLE ────────────────── */
 
 .nav-toggle {
